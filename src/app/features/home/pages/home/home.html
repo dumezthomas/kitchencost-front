@@ -1,1 +1,90 @@
-<p>home works!</p>
+<section class="hero">
+
+  <img src="logo.png" alt="KitchenCost" class="logo">
+
+  <h1>KitchenCost</h1>
+
+  <p class="subtitle">Manage food costs with confidence.</p>
+
+  <p class="tagline">Change one ingredient. Update your entire menu.</p>
+
+  <div class="actions">
+    <button mat-flat-button routerLink="/restaurants">
+      <mat-icon fontSet="material-symbols-outlined">travel_explore</mat-icon>
+      Explore Restaurants
+    </button>
+
+    <button mat-stroked-button routerLink="/login">
+      <mat-icon fontSet="material-symbols-outlined">login</mat-icon>
+      Login
+    </button>
+  </div>
+
+</section>
+
+<section class="features">
+
+  <h2>Why KitchenCost?</h2>
+
+  <div class="cards">
+
+    <mat-card>
+
+      <mat-icon fontSet="material-symbols-outlined">
+        inventory
+      </mat-icon>
+
+      <h3>Ingredients</h3>
+
+      <p>
+        Update ingredient prices once and automatically propagate the changes across every recipe and menu item.
+      </p>
+
+    </mat-card>
+
+    <mat-card>
+
+      <mat-icon fontSet="material-symbols-outlined">
+        menu_book
+      </mat-icon>
+
+      <h3>Recipes</h3>
+
+      <p>
+        Build recipes using real ingredient quantities with accurate cost calculation at every step.
+      </p>
+
+    </mat-card>
+
+    <mat-card>
+
+      <mat-icon fontSet="material-symbols-outlined">
+        restaurant
+      </mat-icon>
+
+      <h3>Menu Items</h3>
+
+      <p>
+        Instantly calculate selling price, food cost, markup and margin using live recipe costs.
+      </p>
+
+    </mat-card>
+
+  </div>
+
+</section>
+
+<section class="about">
+
+  <h2>Built for restaurants</h2>
+
+  <p>
+    KitchenCost eliminates spreadsheets by automatically recalculating your recipes and menu items whenever ingredient
+    prices change. Keep your food cost, markup and margins accurate with real-time calculations.
+  </p>
+
+  <button mat-flat-button routerLink="/login">
+    Login
+  </button>
+
+</section>
