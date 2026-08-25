@@ -1,0 +1,25 @@
+@use './spacing' as *;
+
+$content-width: 1000px;
+$content-wide-width: 1400px;
+
+$header-height: 64px;
+$sidebar-width: 280px;
+
+.page-container {
+  max-width: $content-width;
+  margin-inline: auto;
+
+  padding-inline: $space-6;
+  padding-top: $space-8;
+  padding-bottom: $space-4;
+}
+
+.page-container-wide {
+  max-width: $content-wide-width;
+  margin-inline: auto;
+
+  padding-inline: $space-6;
+  padding-top: $space-8;
+  padding-bottom: $space-4;
+}
