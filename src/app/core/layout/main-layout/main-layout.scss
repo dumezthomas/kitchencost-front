@@ -1,0 +1,53 @@
+@use '../../../../styles/colors' as *;
+@use '../../../../styles/spacing' as *;
+@use '../../../../styles/typography' as *;
+
+:host,
+mat-sidenav-container {
+  display: block;
+  height: 100vh;
+}
+
+mat-sidenav {
+  width: 260px;
+  border-right: 1px solid $border;
+  background: $surface;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-5;
+  color: $primary;
+  font-size: $text-xl;
+  font-weight: $font-bold;
+}
+
+.logo img {
+  width: 42px;
+  height: 42px;
+}
+
+mat-nav-list {
+  padding-top: $space-2;
+}
+
+a.active {
+  border-radius: 8px;
+  background: rgba($accent, .12);
+  color: $accent;
+}
+
+mat-toolbar {
+  border-bottom: 1px solid $border;
+  background: $surface;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.content {
+  padding: $space-6;
+}
