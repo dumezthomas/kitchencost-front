@@ -6,7 +6,6 @@ import {environment} from '../../../../environments/environment';
 
 import {LoginRequest} from '../../../core/models/login-request';
 import {LoginResponse} from '../../../core/models/login-response';
-import {User} from '../../../core/models/user';
 
 @Service()
 export class AuthService {
@@ -18,13 +17,6 @@ export class AuthService {
     return this.http.post<LoginResponse>(
       `${environment.apiUrl}/auth/login`,
       request
-    );
-  }
-
-  me(): Observable<User> {
-
-    return this.http.get<User>(
-      `${environment.apiUrl}/auth/me`
     );
   }
 }

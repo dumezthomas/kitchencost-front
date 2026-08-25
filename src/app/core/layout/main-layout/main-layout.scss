@@ -2,13 +2,19 @@
 @use '../../../../styles/spacing' as *;
 @use '../../../../styles/typography' as *;
 
-:host,
-mat-sidenav-container {
+:host {
   display: block;
   height: 100vh;
 }
 
+mat-sidenav-container {
+  height: 100%;
+  background: $background;
+}
+
 mat-sidenav {
+  display: flex;
+  flex-direction: column;
   width: 260px;
   border-right: 1px solid $border;
   background: $surface;
@@ -17,29 +23,36 @@ mat-sidenav {
 .logo {
   display: flex;
   align-items: center;
-  gap: $space-3;
-  padding: $space-5;
-  color: $primary;
-  font-size: $text-xl;
-  font-weight: $font-bold;
-}
+  gap: 12px;
+  padding: 24px;
+  font-size: 1.25rem;
+  font-weight: 700;
 
-.logo img {
-  width: 42px;
-  height: 42px;
+  img {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 mat-nav-list {
-  padding-top: $space-2;
+  flex: 1;
+  padding-top: 12px;
 }
 
-a.active {
-  border-radius: 8px;
-  background: rgba($accent, .12);
+.active {
   color: $accent;
+  background: rgba($accent, .1);
+  border-radius: 8px;
+}
+
+.logout {
+  justify-content: flex-start;
+  margin: 16px;
 }
 
 mat-toolbar {
+  display: flex;
+  gap: 16px;
   border-bottom: 1px solid $border;
   background: $surface;
 }
@@ -48,6 +61,10 @@ mat-toolbar {
   flex: 1;
 }
 
+.restaurant {
+  font-weight: 600;
+}
+
 .content {
-  padding: $space-6;
+  padding: 24px;
 }

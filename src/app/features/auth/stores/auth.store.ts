@@ -51,7 +51,8 @@ export const AuthStore = signalStore(
 
         next: response => {
 
-          store.tokenStorage.set(response.token);
+          store.tokenStorage.setToken(response.token);
+          store.tokenStorage.setUser(response.user);
 
           patchState(store, {
             user: response.user,
@@ -78,26 +79,16 @@ export const AuthStore = signalStore(
 
     initialize(): void {
 
-      const token = store.tokenStorage.get();
+      const token = store.tokenStorage.getToken();
+      const user = store.tokenStorage.getUser();
 
-      if (!token) {
+      if (!token || !user) {
         return;
       }
 
-      patchState(store, {token});
-
-      store.authService.me().subscribe({
-
-        next: user => {
-
-          patchState(store, {user});
-        },
-
-        error: () => {
-
-          store.tokenStorage.clear();
-          patchState(store, initialState);
-        }
+      patchState(store, {
+        token,
+        user
       });
     }
   })),

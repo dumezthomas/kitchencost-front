@@ -3,7 +3,7 @@
   <mat-sidenav mode="side" opened>
 
     <div class="logo">
-      <img src="logo.png" alt="KitchenCost"/>
+      <img src="logo.png" alt="KitchenCost">
       <span>KitchenCost</span>
     </div>
 
@@ -11,7 +11,7 @@
 
     <mat-nav-list>
 
-      <a mat-list-item routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
         <mat-icon fontSet="material-symbols-outlined">dashboard</mat-icon>
         <span>Dashboard</span>
       </a>
@@ -28,15 +28,20 @@
 
       <a mat-list-item routerLink="/menu-items" routerLinkActive="active">
         <mat-icon fontSet="material-symbols-outlined">restaurant</mat-icon>
-        <span>Menus</span>
+        <span>Menu Items</span>
       </a>
 
-      <a mat-list-item routerLink="/restaurant" routerLinkActive="active">
-        <mat-icon fontSet="material-symbols-outlined">storefront</mat-icon>
-        <span>Restaurant</span>
+      <a mat-list-item routerLink="/settings" routerLinkActive="active">
+        <mat-icon fontSet="material-symbols-outlined">settings</mat-icon>
+        <span>Settings</span>
       </a>
 
     </mat-nav-list>
+
+    <button mat-button class="logout" (click)="logout()">
+      <mat-icon fontSet="material-symbols-outlined">logout</mat-icon>
+      Logout
+    </button>
 
   </mat-sidenav>
 
@@ -44,12 +49,21 @@
 
     <mat-toolbar>
 
+      <span>{{ pageTitle() }}</span>
+
       <span class="spacer"></span>
 
-      <button mat-button (click)="logout()">
-        <mat-icon fontSet="material-symbols-outlined">logout</mat-icon>
-        Logout
-      </button>
+      @if (user(); as user) {
+
+        @if (user.restaurantName) {
+          <span class="restaurant">{{ user.restaurantName }}</span>
+        }
+
+        <span>{{ user.username }}</span>
+
+        <mat-chip>{{ user.role }}</mat-chip>
+
+      }
 
     </mat-toolbar>
 

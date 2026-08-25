@@ -1,4 +1,6 @@
 export const STORAGE = {
-  
-  TOKEN: 'kitchencost-token'
+
+  TOKEN: 'kitchencost-token',
+  USER: 'kitchencost-user'
+
 } as const;
