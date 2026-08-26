@@ -1,0 +1,86 @@
+@use '../../../../../styles/colors' as *;
+@use '../../../../../styles/layout' as *;
+@use '../../../../../styles/spacing' as *;
+@use '../../../../../styles/typography' as *;
+
+:host {
+  display: block;
+}
+
+.page-container {
+  max-width: 800px;
+}
+
+.back-button {
+  margin-bottom: $space-5;
+  padding: 0;
+}
+
+.back-button mat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  margin: 0;
+  color: $primary;
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+}
+
+.subtitle {
+  margin: $space-2 0 $space-6;
+  color: $text-secondary;
+}
+
+form {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-weight: $font-semibold;
+}
+
+.cuisine {
+  color: $text-secondary;
+  font-size: $text-sm;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $space-8;
+  text-align: center;
+}
+
+.empty-state mat-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: $space-4;
+  color: $text-secondary;
+  font-size: 64px;
+}
+
+.empty-state h2 {
+  margin: 0 0 $space-2;
+  font-size: $text-xl;
+  font-weight: $font-semibold;
+}
+
+.empty-state p {
+  margin: 0;
+  color: $text-secondary;
+}

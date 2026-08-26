@@ -1,6 +1,6 @@
 import {Service} from '@angular/core'
 import {STORAGE} from '../constants/storage.constants';
-import {User} from '../models/user';
+import {User} from '../../features/auth/models/user';
 
 @Service()
 export class TokenStorageService {

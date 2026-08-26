@@ -1,10 +1,8 @@
 import {computed, inject} from '@angular/core';
 import {patchState, signalStore, withComputed, withMethods, withProps, withState} from '@ngrx/signals';
-
 import {AuthService} from '../services/auth.service';
-
-import {User} from '../../../core/models/user';
-import {LoginRequest} from '../../../core/models/login-request';
+import {User} from '../models/user';
+import {LoginRequest} from '../models/login-request';
 import {Role} from '../../../shared/enums/role.enum';
 import {TokenStorageService} from '../../../core/services/token-storage.service';
 
@@ -35,7 +33,6 @@ export const AuthStore = signalStore(
 
     authService: inject(AuthService),
     tokenStorage: inject(TokenStorageService)
-
   })),
 
   withMethods((store) => ({

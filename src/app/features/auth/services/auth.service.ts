@@ -4,8 +4,8 @@ import {Observable} from 'rxjs';
 
 import {environment} from '../../../../environments/environment';
 
-import {LoginRequest} from '../../../core/models/login-request';
-import {LoginResponse} from '../../../core/models/login-response';
+import {LoginRequest} from '../models/login-request';
+import {LoginResponse} from '../models/login-response';
 
 @Service()
 export class AuthService {

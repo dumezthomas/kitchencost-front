@@ -23,7 +23,7 @@
 .logo {
   width: 210px;
   height: 210px;
-  margin-bottom: $space-5;
+  margin-bottom: $space-6;
 }
 
 h1 {
@@ -35,7 +35,7 @@ h1 {
 
 .tagline {
   max-width: 700px;
-  margin: $space-5 0 $space-6;
+  margin: $space-6 0 $space-6;
   color: $accent;
   font-size: $text-xl;
   font-weight: $font-semibold;
@@ -54,7 +54,7 @@ h1 {
 .features {
   max-width: $content-width;
   margin-inline: auto;
-  padding: $space-6 $space-6;
+  padding: $space-5 $space-6;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +125,7 @@ mat-card p {
 @media (max-width: $tablet) {
 
   .hero {
-    padding: $space-8 $space-5;
+    padding: $space-6 $space-5;
   }
 
   h1 {

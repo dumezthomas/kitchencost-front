@@ -1,4 +1,4 @@
-import {Role} from '../../shared/enums/role.enum';
+import {Role} from '../../../shared/enums/role.enum';
 
 
 export interface User {

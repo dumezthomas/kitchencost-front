@@ -1,1 +1,127 @@
-<p>restaurants works!</p>
+<section class="page-container">
+
+  <button
+    mat-button
+    class="back-button"
+    routerLink="/">
+
+    <mat-icon fontSet="material-symbols-outlined">arrow_back</mat-icon>
+
+    Home
+
+  </button>
+
+  <h1>Explore Restaurants</h1>
+
+  <p class="subtitle">
+    Find a restaurant and browse its menu.
+  </p>
+
+  <form [formGroup]="form">
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>Restaurant</mat-label>
+
+      <mat-icon matPrefix fontSet="material-symbols-outlined">search</mat-icon>
+
+      <input
+        matInput
+        formControlName="search"
+        placeholder="Search a restaurant or cuisine..."
+        [matAutocomplete]="auto">
+
+      @if (form.controls.search.value) {
+
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="clearSelection()">
+
+          <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
+
+        </button>
+
+      }
+
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayRestaurant"
+        (optionSelected)="selectRestaurant($event.option.value)">
+
+        @for (restaurant of restaurantStore.filteredRestaurants(); track restaurant.id) {
+
+          <mat-option [value]="restaurant">
+
+            <div class="option">
+
+              <span class="name">
+                {{ restaurant.name }}
+              </span>
+
+              <span class="cuisine">
+                {{ restaurant.cuisineType | cuisineType }}
+              </span>
+
+            </div>
+
+          </mat-option>
+
+        }
+
+      </mat-autocomplete>
+
+    </mat-form-field>
+
+  </form>
+
+  @if (!restaurantStore.loading()) {
+
+    @if (!restaurantStore.restaurants().length) {
+
+      <div class="empty-state">
+
+        <mat-icon fontSet="material-symbols-outlined">storefront</mat-icon>
+
+        <h2>No restaurants available</h2>
+
+        <p>
+          There are currently no restaurants to display.
+        </p>
+
+      </div>
+
+    } @else if (!restaurantStore.selectedRestaurant() && !form.controls.search.value) {
+
+      <div class="empty-state">
+
+        <mat-icon fontSet="material-symbols-outlined">restaurant</mat-icon>
+
+        <h2>Select a restaurant</h2>
+
+        <p>
+          Choose a restaurant to browse its menu.
+        </p>
+
+      </div>
+
+    } @else if (form.controls.search.value && !restaurantStore.filteredRestaurants().length) {
+
+      <div class="empty-state">
+
+        <mat-icon fontSet="material-symbols-outlined">search_off</mat-icon>
+
+        <h2>No restaurants found</h2>
+
+        <p>
+          Try another restaurant or cuisine.
+        </p>
+
+      </div>
+
+    }
+
+  }
+
+</section>

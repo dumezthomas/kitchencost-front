@@ -9,6 +9,7 @@ import {MainLayout} from './core/layout/main-layout/main-layout';
 import {Login} from './features/auth/pages/login/login';
 import {Dashboard} from './features/dashboard/pages/dashboard/dashboard';
 import {Home} from './features/home/pages/home/home';
+import {Restaurants} from './features/restaurants/pages/restaurants/restaurants';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,11 @@ export const routes: Routes = [
       {
         path: '',
         component: Home
+      },
+
+      {
+        path: 'restaurants',
+        component: Restaurants
       },
 
       {

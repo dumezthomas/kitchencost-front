@@ -9,6 +9,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 import {AuthStore} from '../../../features/auth/stores/auth.store';
+import {RolePipe} from '../../../shared/pipes/role.pipe';
 
 @Component({
   selector: 'app-main-layout',
@@ -22,7 +23,8 @@ import {AuthStore} from '../../../features/auth/stores/auth.store';
     MatToolbarModule,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
+    RouterOutlet,
+    RolePipe
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss'
