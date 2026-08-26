@@ -1,12 +1,103 @@
 @use '@angular/material' as mat;
 
+@use './colors' as *;
+@use './radius' as *;
+@use './typography' as *;
+
 html {
+
+  color-scheme: light;
+
   @include mat.theme((
     color: (
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
+      theme-type: light,
+      primary: mat.$azure-palette
     ),
-    typography: Roboto,
-    density: 0,
+    typography: (
+      brand-family: Inter,
+      plain-family: Inter
+    ),
+    density: 0
   ));
+
+  /* ==========================================================================
+     System colors
+     ========================================================================== */
+
+  --mat-sys-primary: #{$primary};
+  --mat-sys-on-primary: #{$text-light};
+
+  --mat-sys-secondary: #{$accent};
+  --mat-sys-on-secondary: #{$text-light};
+
+  --mat-sys-surface: #{$surface};
+  --mat-sys-on-surface: #{$text};
+
+  --mat-sys-surface-container: #{$surface};
+
+  --mat-sys-background: #{$background};
+  --mat-sys-on-background: #{$text};
+
+  --mat-sys-outline: #{$border};
+
+  --mat-sys-error: #{$error};
+
+  /* ==========================================================================
+     Filled button
+     ========================================================================== */
+
+  --mat-button-filled-container-color: #{$primary};
+  --mat-button-filled-label-text-color: #{$text-light};
+
+  /* ==========================================================================
+     Outlined button
+     ========================================================================== */
+
+  --mat-button-outlined-outline-color: #{$border};
+  --mat-button-outlined-label-text-color: #{$primary};
+
+  /* ==========================================================================
+     Text button
+     ========================================================================== */
+
+  --mat-button-text-label-text-color: #{$primary};
+
+  /* ==========================================================================
+     Form field
+     ========================================================================== */
+
+  --mat-form-field-focus-outline-color: #{$accent};
+  --mat-form-field-focus-label-text-color: #{$accent};
+  --mat-form-field-caret-color: #{$accent};
+
+  --mat-form-field-outline-color: #{$border};
+  --mat-form-field-hover-outline-color: #{$primary};
+
+  /* ==========================================================================
+     Checkbox
+     ========================================================================== */
+
+  --mat-checkbox-selected-icon-color: #{$accent};
+
+  /* ==========================================================================
+     Radio
+     ========================================================================== */
+
+  --mat-radio-checked-icon-color: #{$accent};
+
+  /* ==========================================================================
+     Progress
+     ========================================================================== */
+
+  --mat-progress-bar-active-indicator-color: #{$accent};
+  --mat-progress-spinner-active-indicator-color: #{$accent};
+
+  /* ==========================================================================
+     Shape
+     ========================================================================== */
+
+  --mat-filled-button-container-shape: #{$radius-full};
+  --mat-outlined-button-container-shape: #{$radius-full};
+  --mat-form-field-container-shape: #{$radius-lg};
+
 }

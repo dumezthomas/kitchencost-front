@@ -1,4 +1,7 @@
 @use '../../../../styles/colors' as *;
+@use '../../../../styles/layout' as *;
+@use '../../../../styles/radius' as *;
+@use '../../../../styles/shadows' as *;
 @use '../../../../styles/spacing' as *;
 @use '../../../../styles/typography' as *;
 
@@ -15,7 +18,7 @@ mat-sidenav-container {
 mat-sidenav {
   display: flex;
   flex-direction: column;
-  width: 260px;
+  width: $sidebar-width;
   border-right: 1px solid $border;
   background: $surface;
 }
@@ -23,48 +26,92 @@ mat-sidenav {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 24px;
-  font-size: 1.25rem;
-  font-weight: 700;
+  gap: $space-4;
+  padding: $space-6;
+  border-bottom: 1px solid $border;
+  color: $primary;
+  font-size: $text-xl;
+  font-weight: $font-bold;
 
   img {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 }
 
 mat-nav-list {
   flex: 1;
-  padding-top: 12px;
+  padding: $space-3;
+}
+
+a[mat-list-item] {
+  margin-bottom: $space-2;
+  border-radius: $radius-md;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+a[mat-list-item]:hover {
+  background: rgba($accent, .08);
 }
 
 .active {
   color: $accent;
-  background: rgba($accent, .1);
-  border-radius: 8px;
+  background: rgba($accent, .12);
 }
 
 .logout {
+  padding: $space-3;
+  border-top: 1px solid $border;
+}
+
+.logout button {
+  width: 100%;
   justify-content: flex-start;
-  margin: 16px;
 }
 
 mat-toolbar {
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: $space-4;
+  height: $header-height;
+  padding-inline: $space-6;
   border-bottom: 1px solid $border;
   background: $surface;
+  box-shadow: $shadow-sm;
+}
+
+.toolbar-title {
+  color: $primary;
+  font-size: $text-xl;
+  font-weight: $font-bold;
 }
 
 .spacer {
   flex: 1;
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+}
+
 .restaurant {
-  font-weight: 600;
+  color: $primary;
+  font-weight: $font-semibold;
+}
+
+.user {
+  color: $text-secondary;
+}
+
+mat-chip {
+  background: rgba($accent, .12) !important;
+  color: $accent !important;
+  font-size: $text-sm;
+  font-weight: $font-medium;
 }
 
 .content {
-  padding: 24px;
+  padding: $space-6;
 }

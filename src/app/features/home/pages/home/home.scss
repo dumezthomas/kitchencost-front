@@ -1,6 +1,10 @@
 @use '../../../../../styles/colors' as *;
 @use '../../../../../styles/spacing' as *;
 @use '../../../../../styles/typography' as *;
+@use '../../../../../styles/radius' as *;
+@use '../../../../../styles/shadows' as *;
+@use '../../../../../styles/breakpoints' as *;
+@use '../../../../../styles/layout' as *;
 
 :host {
   display: block;
@@ -11,60 +15,71 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
-  padding: 4rem 2rem;
+  margin: $space-6 0 0;
+  padding: $space-6;
   text-align: center;
 }
 
 .logo {
-  width: 96px;
-  height: 96px;
-  margin-bottom: 1.5rem;
+  width: 210px;
+  height: 210px;
+  margin-bottom: $space-5;
 }
 
 h1 {
   margin: 0;
-  font-size: 3.5rem;
-  font-weight: 700;
-}
-
-.subtitle {
-  margin: 1rem 0 0;
-  font-size: 1.35rem;
-  color: $text-secondary;
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+  line-height: 1.1;
 }
 
 .tagline {
   max-width: 700px;
-  margin: 1rem 0 2rem;
-  font-size: 1.15rem;
-  font-weight: 600;
+  margin: $space-5 0 $space-6;
   color: $accent;
+  font-size: $text-xl;
+  font-weight: $font-semibold;
 }
 
 .actions {
   display: flex;
-  gap: 1rem;
+  gap: $space-4;
 }
 
-.features,
-.about {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 5rem 2rem;
+.actions button {
+  height: 44px;
+  padding-inline: $space-6;
 }
 
-.features h2,
-.about h2 {
-  margin: 0 0 3rem;
+.features {
+  max-width: $content-width;
+  margin-inline: auto;
+  padding: $space-6 $space-6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.features h2 {
+  margin: 0 0 $space-6;
   text-align: center;
-  font-size: 2rem;
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+}
+
+.features p {
+  max-width: 680px;
+  margin: 0 0 $space-6;
+  color: $text-secondary;
+  text-align: center;
+  line-height: 1.8;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: $space-5;
+  align-items: stretch;
 }
 
 mat-card {
@@ -72,62 +87,49 @@ mat-card {
   flex-direction: column;
   align-items: center;
   height: 100%;
-  padding: 2rem;
+  min-height: 240px;
+  padding: $space-6;
   border: 1px solid $border;
-  border-radius: 16px;
-  box-shadow: none;
+  border-radius: $radius-xl;
+  background: $surface;
+  box-shadow: $shadow-sm;
   text-align: center;
   transition: transform .2s ease, box-shadow .2s ease;
 }
 
 mat-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, .08);
+  transform: translateY(-4px);
+  box-shadow: $shadow-lg;
 }
 
 mat-card mat-icon {
   width: 56px;
   height: 56px;
-  margin-bottom: 1.25rem;
+  margin-bottom: $space-5;
   font-size: 56px;
   color: $accent;
 }
 
 mat-card h3 {
-  margin: 0 0 1rem;
-  font-size: 1.35rem;
-  font-weight: 600;
+  margin: 0 0 $space-4;
+  font-size: $text-xl;
+  font-weight: $font-semibold;
 }
 
 mat-card p {
   margin: 0;
+  color: $text-secondary;
   line-height: 1.7;
-  color: $text-secondary;
 }
 
-.about {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.about p {
-  max-width: 760px;
-  margin: 0 0 2rem;
-  text-align: center;
-  line-height: 1.8;
-  color: $text-secondary;
-}
-
-@media (max-width: 960px) {
+@media (max-width: $tablet) {
 
   .hero {
-    min-height: auto;
-    padding: 3rem 1.5rem;
+    padding: $space-8 $space-5;
   }
 
   h1 {
-    font-size: 2.75rem;
+    font-size: $text-2xl;
   }
 
   .cards {

@@ -1,31 +1,23 @@
+@use './styles/colors';
+@use './styles/typography';
+@use './styles/spacing';
+@use './styles/layout';
 @use './styles/material';
-
-@use './styles/colors' as *;
-@use './styles/spacing' as *;
-@use './styles/typography' as *;
-@use './styles/radius' as *;
-@use './styles/shadows' as *;
-@use './styles/breakpoints' as *;
-@use './styles/layout' as *;
 
 html,
 body {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  min-height: 100%;
-
-  background: $background;
-  color: $text;
-
-  font-family: $font-family;
-  font-size: $text-md;
-  line-height: 1.5;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: colors.$background;
+  color: colors.$text;
+  font-family: typography.$font-family;
 }
 
 *,
@@ -58,4 +50,11 @@ select {
   'wght' 400,
   'GRAD' 0,
   'opsz' 24;
+}
+
+.mat-mdc-icon-button .mat-icon,
+.mat-mdc-icon-button .material-symbols-outlined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

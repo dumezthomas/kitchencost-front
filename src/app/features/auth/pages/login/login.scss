@@ -1,4 +1,6 @@
 @use '../../../../../styles/colors' as *;
+@use '../../../../../styles/radius' as *;
+@use '../../../../../styles/shadows' as *;
 @use '../../../../../styles/spacing' as *;
 @use '../../../../../styles/typography' as *;
 
@@ -11,17 +13,36 @@
   background: $background;
 }
 
-.login-card {
+.login-page {
   width: 100%;
-  max-width: 420px;
+  display: flex;
+  justify-content: center;
+}
+
+.login-card {
+  width: min(100%, 420px);
   padding: $space-8;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
+
+  border: 1px solid $border;
+  border-radius: $radius-xl;
+  background: $surface;
+  box-shadow: $shadow-sm;
+}
+
+.back-button {
+  position: absolute;
+  top: $space-4;
+  left: $space-4;
+  color: $text-secondary;
+}
+
+.back-button:hover {
+  color: $primary;
 }
 
 .logo {
   display: block;
-  width: 96px;
+  width: 120px;
   margin: 0 auto $space-4;
 }
 

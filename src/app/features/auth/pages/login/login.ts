@@ -1,6 +1,6 @@
 import {Component, effect, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -20,7 +20,8 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinner
+    MatProgressSpinner,
+    RouterLink
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss'

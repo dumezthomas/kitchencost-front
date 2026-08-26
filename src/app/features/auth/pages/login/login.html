@@ -2,6 +2,15 @@
 
   <mat-card class="login-card">
 
+    <button
+      mat-icon-button
+      class="back-button"
+      routerLink="/">
+
+      <mat-icon fontSet="material-symbols-outlined">arrow_back</mat-icon>
+
+    </button>
+
     <img src="logo.png" alt="KitchenCost" class="logo"/>
 
     <h1>KitchenCost</h1>
@@ -28,13 +37,12 @@
           [type]="hidePassword ? 'password' : 'text'"
           formControlName="password"/>
 
-        <button
-          mat-icon-button
-          matSuffix
-          type="button"
-          (click)="hidePassword = !hidePassword">
+        <button mat-icon-button
+                matSuffix
+                type="button"
+                (click)="hidePassword = !hidePassword">
 
-          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon fontSet="material-symbols-outlined">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
 
         </button>
 
