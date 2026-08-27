@@ -150,107 +150,125 @@
 
     </mat-card>
 
-    @for (type of [
-      MenuItemType.AMUSE_BOUCHE,
-      MenuItemType.STARTER,
-      MenuItemType.MAIN,
-      MenuItemType.DESSERT
-    ]; track type) {
+    @if (!restaurant.menu.length) {
 
-      @if (restaurantStore.menuItemsByType()[type]?.length) {
+      <div class="empty-state">
 
-        <section class="menu-section">
+        <mat-icon fontSet="material-symbols-outlined">menu_book</mat-icon>
 
-          <h3>
+        <h2>No menu available</h2>
 
-            <mat-icon fontSet="material-symbols-outlined">
+        <p>
+          This restaurant has not published its menu yet.
+        </p>
 
-              @switch (type) {
+      </div>
 
-                @case (MenuItemType.AMUSE_BOUCHE) {
-                  tapas
+    } @else {
+
+      @for (type of [
+        MenuItemType.AMUSE_BOUCHE,
+        MenuItemType.STARTER,
+        MenuItemType.MAIN,
+        MenuItemType.DESSERT
+      ]; track type) {
+
+        @if (restaurantStore.menuItemsByType()[type]?.length) {
+
+          <section class="menu-section">
+
+            <h3>
+
+              <mat-icon fontSet="material-symbols-outlined">
+
+                @switch (type) {
+
+                  @case (MenuItemType.AMUSE_BOUCHE) {
+                    tapas
+                  }
+                  @case (MenuItemType.STARTER) {
+                    restaurant_menu
+                  }
+                  @case (MenuItemType.MAIN) {
+                    lunch_dining
+                  }
+                  @case (MenuItemType.DESSERT) {
+                    cake
+                  }
+
                 }
-                @case (MenuItemType.STARTER) {
-                  restaurant_menu
-                }
-                @case (MenuItemType.MAIN) {
-                  lunch_dining
-                }
-                @case (MenuItemType.DESSERT) {
-                  cake
-                }
 
-              }
+              </mat-icon>
 
-            </mat-icon>
+              {{ type | menuItemType }}
 
-            {{ type | menuItemType }}
+            </h3>
 
-          </h3>
+            @for (item of restaurantStore.menuItemsByType()[type]; track item.id) {
 
-          @for (item of restaurantStore.menuItemsByType()[type]; track item.id) {
+              <article class="menu-item">
 
-            <article class="menu-item">
+                <div class="menu-item-header">
 
-              <div class="menu-item-header">
+                  <h4>{{ item.name }}</h4>
 
-                <h4>{{ item.name }}</h4>
-
-                <span class="price">
-                  {{ item.price | currency:'EUR' }}
+                  <span class="price">
+                  {{ item.price | menuItemPrice }}
                 </span>
 
-              </div>
+                </div>
 
-              <p class="description">
-                {{ item.description }}
-              </p>
+                <p class="description">
+                  {{ item.description }}
+                </p>
 
-              <div class="badges">
+                <div class="badges">
 
-                @if (item.dietType === DietType.VEGAN) {
+                  @if (item.dietType === DietType.VEGAN) {
 
-                  <app-badge
-                    variant="success"
-                    icon="eco">
+                    <app-badge
+                      variant="success"
+                      icon="eco">
 
-                    {{ item.dietType | dietType }}
+                      {{ item.dietType | dietType }}
 
-                  </app-badge>
+                    </app-badge>
 
-                }
+                  }
 
-                @if (item.dietType === DietType.VEGETARIAN) {
+                  @if (item.dietType === DietType.VEGETARIAN) {
 
-                  <app-badge
-                    variant="success"
-                    icon="spa">
+                    <app-badge
+                      variant="success"
+                      icon="spa">
 
-                    {{ item.dietType | dietType }}
+                      {{ item.dietType | dietType }}
 
-                  </app-badge>
+                    </app-badge>
 
-                }
+                  }
 
-                @for (allergen of item.allergens; track allergen) {
+                  @for (allergen of item.allergens; track allergen) {
 
-                  <app-badge
-                    variant="warning"
-                    icon="warning">
+                    <app-badge
+                      variant="warning"
+                      icon="warning">
 
-                    {{ allergen | allergen }}
+                      {{ allergen | allergen }}
 
-                  </app-badge>
+                    </app-badge>
 
-                }
+                  }
 
-              </div>
+                </div>
 
-            </article>
+              </article>
 
-          }
+            }
 
-        </section>
+          </section>
+
+        }
 
       }
 

@@ -15,12 +15,12 @@ import {PublicRestaurantStore} from '../../stores/public-restaurant.store';
 import {PublicRestaurantIndex} from '../../models/public-restaurant-index';
 import {MatCard, MatCardContent} from '@angular/material/card';
 import {MenuItemType} from '../../../../shared/enums/menu-item-type.enum';
-import {MenuItemTypePipe} from '../../../../shared/pipes/menu-item-type.pipe';
 import {AllergenPipe} from '../../../../shared/pipes/allergen.pipe';
-import {CurrencyPipe} from '@angular/common';
 import {DietType} from '../../../../shared/enums/diet-type.enum';
 import {DietTypePipe} from '../../../../shared/pipes/diet-type.pipe';
 import {Badge} from '../../../../shared/components/badge/badge';
+import {MenuItemPricePipe} from '../../../../shared/pipes/menu-item-price.pipe';
+import {MenuItemTypePipe} from '../../../../shared/pipes/menu-item-type.pipe';
 
 @Component({
   selector: 'app-restaurants',
@@ -40,9 +40,14 @@ import {Badge} from '../../../../shared/components/badge/badge';
     MatCardContent,
     MenuItemTypePipe,
     AllergenPipe,
-    CurrencyPipe,
     DietTypePipe,
-    Badge
+    Badge,
+    MenuItemTypePipe,
+    MenuItemTypePipe,
+    MenuItemTypePipe,
+    MenuItemTypePipe,
+    MenuItemPricePipe,
+    MenuItemTypePipe
   ],
   templateUrl: './restaurants.html',
   styleUrl: './restaurants.scss'
