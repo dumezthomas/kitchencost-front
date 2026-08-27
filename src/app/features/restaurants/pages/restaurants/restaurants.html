@@ -82,7 +82,9 @@
 
       <div class="empty-state">
 
-        <mat-icon fontSet="material-symbols-outlined">storefront</mat-icon>
+        <mat-icon fontSet="material-symbols-outlined">
+          storefront
+        </mat-icon>
 
         <h2>No restaurants available</h2>
 
@@ -96,7 +98,9 @@
 
       <div class="empty-state">
 
-        <mat-icon fontSet="material-symbols-outlined">restaurant</mat-icon>
+        <mat-icon fontSet="material-symbols-outlined">
+          restaurant
+        </mat-icon>
 
         <h2>Select a restaurant</h2>
 
@@ -110,7 +114,9 @@
 
       <div class="empty-state">
 
-        <mat-icon fontSet="material-symbols-outlined">search_off</mat-icon>
+        <mat-icon fontSet="material-symbols-outlined">
+          search_off
+        </mat-icon>
 
         <h2>No restaurants found</h2>
 
@@ -119,6 +125,134 @@
         </p>
 
       </div>
+
+    }
+
+  }
+
+  @if (restaurantStore.selectedRestaurant(); as restaurant) {
+
+    <mat-card class="restaurant-card">
+
+      <mat-card-content>
+
+        <h2>{{ restaurant.name }}</h2>
+
+        <p class="cuisine">
+          {{ restaurant.cuisineType | cuisineType }}
+        </p>
+
+        <p class="description">
+          {{ restaurant.description }}
+        </p>
+
+      </mat-card-content>
+
+    </mat-card>
+
+    @for (type of [
+      MenuItemType.AMUSE_BOUCHE,
+      MenuItemType.STARTER,
+      MenuItemType.MAIN,
+      MenuItemType.DESSERT
+    ]; track type) {
+
+      @if (restaurantStore.menuItemsByType()[type]?.length) {
+
+        <section class="menu-section">
+
+          <h3>
+
+            <mat-icon fontSet="material-symbols-outlined">
+
+              @switch (type) {
+
+                @case (MenuItemType.AMUSE_BOUCHE) {
+                  tapas
+                }
+                @case (MenuItemType.STARTER) {
+                  restaurant_menu
+                }
+                @case (MenuItemType.MAIN) {
+                  lunch_dining
+                }
+                @case (MenuItemType.DESSERT) {
+                  cake
+                }
+
+              }
+
+            </mat-icon>
+
+            {{ type | menuItemType }}
+
+          </h3>
+
+          @for (item of restaurantStore.menuItemsByType()[type]; track item.id) {
+
+            <article class="menu-item">
+
+              <div class="menu-item-header">
+
+                <h4>{{ item.name }}</h4>
+
+                <span class="price">
+                  {{ item.price | currency:'EUR' }}
+                </span>
+
+              </div>
+
+              <p class="description">
+                {{ item.description }}
+              </p>
+
+              <div class="badges">
+
+                @if (item.dietType === DietType.VEGAN) {
+
+                  <app-badge
+                    variant="success"
+                    icon="eco">
+
+                    {{ item.dietType | dietType }}
+
+                  </app-badge>
+
+                }
+
+                @if (item.dietType === DietType.VEGETARIAN) {
+
+                  <app-badge
+                    variant="success"
+                    icon="spa">
+
+                    {{ item.dietType | dietType }}
+
+                  </app-badge>
+
+                }
+
+                @for (allergen of item.allergens; track allergen) {
+
+                  <app-badge
+                    variant="warning"
+                    icon="warning">
+
+                    {{ allergen | allergen }}
+
+                  </app-badge>
+
+                }
+
+              </div>
+
+            </article>
+
+          }
+
+        </section>
+
+      }
 
     }
 

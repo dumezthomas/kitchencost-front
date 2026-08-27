@@ -1,4 +1,4 @@
-export type AutocompleteOptions<T> = {
+export type SearchAutocompleteOptions<T> = {
 
   label: (item: T) => string;
   keywords?: (item: T) => string[];
@@ -9,7 +9,7 @@ export type AutocompleteOptions<T> = {
 export function searchAutocomplete<T>(
   items: T[],
   search: string,
-  options: AutocompleteOptions<T>
+  options: SearchAutocompleteOptions<T>
 ): T[] {
 
   const query = search.trim().toLowerCase();

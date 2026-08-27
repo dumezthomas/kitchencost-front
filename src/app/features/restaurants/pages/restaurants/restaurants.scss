@@ -34,10 +34,7 @@ h1 {
   color: $text-secondary;
 }
 
-form {
-  width: 100%;
-}
-
+form,
 mat-form-field {
   width: 100%;
 }
@@ -83,4 +80,98 @@ mat-form-field {
 .empty-state p {
   margin: 0;
   color: $text-secondary;
+}
+
+.restaurant-card {
+  margin: $space-8 0;
+  padding-left: $space-2;
+  border-left: 4px solid $primary;
+  background: $surface;
+}
+
+.restaurant-card mat-card-content {
+  padding: 24px;
+}
+
+.restaurant-card h2 {
+  margin: 0;
+  color: $primary;
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+}
+
+.restaurant-card .cuisine {
+  margin: $space-2 0;
+  color: $primary;
+  font-weight: $font-semibold;
+}
+
+.restaurant-card .description {
+  margin-top: $space-3;
+  color: $text-secondary;
+}
+
+.menu-section {
+  margin-top: $space-7;
+}
+
+.menu-section h3 {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  margin: 0 0 $space-3;
+  padding-bottom: $space-2;
+
+  border-bottom: 1px solid $accent;
+
+  color: $accent;
+  font-size: $text-xl;
+  font-weight: $font-semibold;
+}
+
+.menu-section h3 mat-icon {
+  color: $accent;
+}
+
+.menu-item {
+  padding: $space-6 0 $space-6;
+  border-bottom: 1px solid $border;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+}
+
+.menu-item-header h4 {
+  margin: 0;
+  color: $text;
+  font-size: $text-lg;
+  font-weight: $font-semibold;
+}
+
+.price {
+  color: $text;
+  font-size: $text-lg;
+  font-weight: $font-semibold;
+  white-space: nowrap;
+}
+
+.menu-item .description {
+  margin: $space-2 0 $space-4;
+  color: $text-secondary;
+  line-height: 1.5;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
 }

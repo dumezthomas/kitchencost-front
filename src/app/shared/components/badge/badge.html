@@ -1,0 +1,25 @@
+<span
+  class="badge"
+  [class.primary]="variant() === 'primary'"
+  [class.accent]="variant() === 'accent'"
+  [class.success]="variant() === 'success'"
+  [class.warning]="variant() === 'warning'"
+  [class.error]="variant() === 'error'"
+  [class.info]="variant() === 'info'"
+  [class.neutral]="variant() === 'neutral'">
+
+  @if (icon()) {
+
+    <mat-icon fontSet="material-symbols-outlined">
+      {{ icon() }}
+    </mat-icon>
+
+  }
+
+  <span class="label">
+
+    <ng-content/>
+
+  </span>
+
+</span>

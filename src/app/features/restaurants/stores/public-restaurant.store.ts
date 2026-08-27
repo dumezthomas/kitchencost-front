@@ -4,7 +4,8 @@ import {PublicRestaurantService} from '../services/public-restaurant.service';
 import {PublicRestaurant} from '../models/public-restaurant';
 import {PublicRestaurantIndex} from '../models/public-restaurant-index';
 import {UUID} from '../../../shared/types/uuid';
-import {searchAutocomplete} from '../../../shared/utils/autocomplete.util';
+import {searchAutocomplete} from '../../../shared/utils/search-autocomplete.util';
+import {groupByKey} from '../../../shared/utils/group-by-key.util';
 
 type PublicRestaurantState = {
 
@@ -112,14 +113,16 @@ export const PublicRestaurantStore = signalStore(
     clearSelection(): void {
 
       patchState(store, {
-        selectedRestaurant: null
+        selectedRestaurant: null,
+        search: ''
       });
     }
   })),
 
   withComputed((store) => ({
 
-    filteredRestaurants: computed(() => searchAutocomplete(
+    filteredRestaurants: computed(() =>
+      searchAutocomplete(
         store.restaurants(),
         store.search(),
         {
@@ -127,6 +130,13 @@ export const PublicRestaurantStore = signalStore(
           keywords: restaurant => [restaurant.cuisineType],
           limit: 10
         }
+      )
+    ),
+
+    menuItemsByType: computed(() =>
+      groupByKey(
+        store.selectedRestaurant()?.menu ?? [],
+        item => item.type
       )
     )
   }))

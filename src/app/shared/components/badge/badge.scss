@@ -1,0 +1,73 @@
+@use '../../../../styles/colors' as *;
+@use '../../../../styles/spacing' as *;
+@use '../../../../styles/typography' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 5px 10px;
+
+  border: 1px solid;
+  border-radius: 999px;
+
+  user-select: none;
+  white-space: nowrap;
+
+  font-size: $text-sm;
+  font-weight: $font-medium;
+}
+
+.badge mat-icon {
+  flex-shrink: 0;
+
+  width: $text-sm;
+  height: $text-sm;
+
+  font-size: $text-sm;
+  line-height: $text-sm;
+}
+
+.badge.primary {
+  color: $primary;
+  background: rgba($primary, .08);
+  border-color: rgba($primary, .25);
+}
+
+.badge.accent {
+  color: $accent-dark;
+  background: rgba($accent, .10);
+  border-color: rgba($accent, .30);
+}
+
+.badge.success {
+  color: $success-dark;
+  background: rgba($success, .12);
+  border-color: rgba($success, .32);
+}
+
+.badge.warning {
+  color: $warning-dark;
+  background: rgba($warning, .12);
+  border-color: rgba($warning, .32);
+}
+
+
+.badge.error {
+  color: $error-dark;
+  background: rgba($error, .12);
+  border-color: rgba($error, .32);
+}
+
+.badge.info {
+  color: $info-dark;
+  background: rgba($info, .12);
+  border-color: rgba($info, .32);
+}
+
+.badge.neutral {
+  color: $text-secondary;
+  background: rgba($text-secondary, .08);
+  border-color: rgba($text-secondary, .20);
+}

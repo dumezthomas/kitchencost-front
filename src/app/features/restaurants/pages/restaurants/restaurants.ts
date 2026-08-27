@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, DestroyRef, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 
 import {RouterLink} from '@angular/router';
@@ -13,6 +13,14 @@ import {CuisineTypePipe} from '../../../../shared/pipes/cuisine-type.pipe';
 
 import {PublicRestaurantStore} from '../../stores/public-restaurant.store';
 import {PublicRestaurantIndex} from '../../models/public-restaurant-index';
+import {MatCard, MatCardContent} from '@angular/material/card';
+import {MenuItemType} from '../../../../shared/enums/menu-item-type.enum';
+import {MenuItemTypePipe} from '../../../../shared/pipes/menu-item-type.pipe';
+import {AllergenPipe} from '../../../../shared/pipes/allergen.pipe';
+import {CurrencyPipe} from '@angular/common';
+import {DietType} from '../../../../shared/enums/diet-type.enum';
+import {DietTypePipe} from '../../../../shared/pipes/diet-type.pipe';
+import {Badge} from '../../../../shared/components/badge/badge';
 
 @Component({
   selector: 'app-restaurants',
@@ -27,7 +35,14 @@ import {PublicRestaurantIndex} from '../../models/public-restaurant-index';
     MatInputModule,
 
     CuisineTypePipe,
-    MatIconButton
+    MatIconButton,
+    MatCard,
+    MatCardContent,
+    MenuItemTypePipe,
+    AllergenPipe,
+    CurrencyPipe,
+    DietTypePipe,
+    Badge
   ],
   templateUrl: './restaurants.html',
   styleUrl: './restaurants.scss'
@@ -37,6 +52,7 @@ export class Restaurants {
   readonly restaurantStore = inject(PublicRestaurantStore);
 
   private readonly fb = inject(FormBuilder);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly form = this.fb.group({
     search: this.fb.control<PublicRestaurantIndex | string | null>(null)
@@ -54,6 +70,13 @@ export class Restaurants {
           : value?.name ?? ''
       );
     });
+
+    this.destroyRef.onDestroy(() => {
+
+      this.form.reset();
+      this.restaurantStore.clearSelection();
+
+    });
   }
 
   displayRestaurant = (restaurant: PublicRestaurantIndex | null): string =>
@@ -69,4 +92,7 @@ export class Restaurants {
     this.form.controls.search.setValue(null);
     this.restaurantStore.clearSelection();
   }
+
+  protected readonly MenuItemType = MenuItemType;
+  protected readonly DietType = DietType;
 }
