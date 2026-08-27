@@ -15,53 +15,72 @@
 
 .login-page {
   width: 100%;
+  max-width: 460px;
+}
+
+.back-button {
+  margin-bottom: $space-5;
+  padding: 0;
+}
+
+.back-button mat-icon {
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .login-card {
-  width: min(100%, 420px);
-  padding: $space-8;
+  padding: $space-7;
 
   border: 1px solid $border;
   border-radius: $radius-xl;
+
   background: $surface;
   box-shadow: $shadow-sm;
 }
 
-.back-button {
-  position: absolute;
-  top: $space-4;
-  left: $space-4;
-  color: $text-secondary;
-}
-
-.back-button:hover {
-  color: $primary;
-}
-
 .logo {
   display: block;
-  width: 120px;
-  margin: 0 auto $space-4;
+  width: 112px;
+  margin: 0 auto $space-5;
 }
 
 h1 {
   margin: 0;
+
   color: $primary;
-  font-size: $text-2xl;
+
+  font-size: $text-3xl;
   font-weight: $font-bold;
+  line-height: 1.1;
+
   text-align: center;
 }
 
 .subtitle {
-  margin: $space-2 0 $space-6;
+  margin: $space-2;
+
   color: $text-secondary;
+
   font-size: $text-md;
+
+  text-align: center;
+}
+
+.tagline {
+  color: $accent;
+
+  font-size: $text-md;
+  font-weight: $font-semibold;
+  line-height: 1.6;
+  max-width: 340px;
+  margin: $space-5 auto $space-7;
+
   text-align: center;
 }
 
 form {
+  margin-top: $space-2;
   display: flex;
   flex-direction: column;
   gap: $space-4;
@@ -72,16 +91,21 @@ mat-form-field {
 }
 
 .login-button {
+  width: 100%;
+  height: 48px;
+  margin-top: $space-2;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 48px;
 }
 
 .error {
   margin: 0;
+
   color: $error;
+
   font-size: $text-sm;
+
   text-align: center;
 }

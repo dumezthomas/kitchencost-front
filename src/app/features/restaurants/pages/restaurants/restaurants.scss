@@ -85,32 +85,49 @@ mat-form-field {
 
 .restaurant-card {
   margin: $space-8 0;
-  padding-left: $space-2;
-  border-left: 4px solid $primary;
-  border-radius: $radius-lg;
+
+  border: 1px solid $border;
+  border-radius: $radius-xl;
+
   background: $surface;
 }
 
 .restaurant-card mat-card-content {
-  padding: $space-5;
+  padding: $space-6;
 }
 
 .restaurant-card h2 {
   margin: 0;
+
   color: $primary;
+
   font-size: $text-2xl;
   font-weight: $font-bold;
 }
 
 .restaurant-card .cuisine {
-  margin: $space-2 0;
+  display: inline-flex;
+
+  margin-top: $space-3;
+  padding: 4px 10px;
+
+  border: 1px solid rgba($primary, .18);
+  border-radius: 999px;
+
+  background: rgba($primary, .06);
+
   color: $primary;
-  font-weight: $font-semibold;
+
+  font-size: $text-sm;
+  font-weight: $font-medium;
 }
 
 .restaurant-card .description {
-  margin-top: $space-3;
+  margin-top: $space-4;
+
   color: $text-secondary;
+
+  line-height: 1.6;
 }
 
 .menu-section {
@@ -166,7 +183,7 @@ mat-form-field {
 .price {
   color: $text;
   font-size: $text-lg;
-  font-weight: $font-semibold;
+  font-weight: $font-bold;
   white-space: nowrap;
 }
 

@@ -1,70 +1,208 @@
 <section class="hero">
 
-  <img src="logo.png" alt="KitchenCost" class="logo">
+  <img
+    class="logo"
+    src="logo.png"
+    alt="KitchenCost">
 
-  <h1>KitchenCost</h1>
+  <h1>
+    KitchenCost
+  </h1>
 
-  <p class="tagline">One ingredient update. Every recipe recalculated.</p>
+  <p class="subtitle">
+    Restaurant Cost Management
+  </p>
+
+  <p class="tagline">
+    Real-time food costing. Smarter menu decisions.
+  </p>
 
   <div class="actions">
-    <button mat-flat-button routerLink="/restaurants">
-      <mat-icon fontSet="material-symbols-outlined">travel_explore</mat-icon>
-      Explore Restaurants
+
+    <button
+      mat-flat-button
+      routerLink="/login">
+
+      <mat-icon fontSet="material-symbols-outlined">
+        login
+      </mat-icon>
+
+      Login
+
     </button>
 
-    <button mat-stroked-button routerLink="/login">
-      <mat-icon fontSet="material-symbols-outlined">login</mat-icon>
-      Login
+    <button
+      mat-stroked-button
+      routerLink="/restaurants">
+
+      <mat-icon fontSet="material-symbols-outlined">
+        travel_explore
+      </mat-icon>
+
+      Explore Restaurants
+
     </button>
+
   </div>
 
 </section>
 
 <section class="features">
 
-  <h2>Built for restaurants.</h2>
+  <header class="section-header">
 
-  <p>
-    Automatically recalculate recipe costs, menu prices and food cost whenever an ingredient price changes.
-  </p>
+    <h2>
+      Everything you need to control food costs.
+    </h2>
+
+    <p>
+      KitchenCost automatically keeps ingredient prices, recipe costs
+      and menu profitability synchronized across your restaurant.
+    </p>
+
+  </header>
 
   <div class="cards">
 
     <mat-card>
 
-      <mat-icon fontSet="material-symbols-outlined">inventory</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined">
+        grocery
+      </mat-icon>
 
-      <h3>Ingredients</h3>
+      <h3>
+        Ingredients
+      </h3>
 
       <p>
-        Update ingredient prices and automatically recalculate every recipe and menu item.
+        Manage ingredient prices and keep a complete price history.
       </p>
 
     </mat-card>
 
     <mat-card>
 
-      <mat-icon fontSet="material-symbols-outlined">menu_book</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined">
+        menu_book
+      </mat-icon>
 
-      <h3>Recipes</h3>
+      <h3>
+        Recipes
+      </h3>
 
       <p>
-        Build recipes with precise ingredient quantities and always accurate food costs.
+        Create recipes with precise ingredient quantities and live production costs.
       </p>
 
     </mat-card>
 
     <mat-card>
 
-      <mat-icon fontSet="material-symbols-outlined">restaurant</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined">
+        restaurant_menu
+      </mat-icon>
 
-      <h3>Menu Items</h3>
+      <h3>
+        Menu Items
+      </h3>
 
       <p>
-        Calculate selling prices, food cost, markup and margin from live recipe costs.
+        Calculate profitable menu prices from live recipe costs.
       </p>
 
     </mat-card>
+
+  </div>
+
+</section>
+
+<section class="benefits">
+
+  <header class="section-header">
+
+    <h2>
+      Why KitchenCost?
+    </h2>
+
+    <p>
+      Designed for modern restaurants that want reliable costing without spreadsheets.
+    </p>
+
+  </header>
+
+  <div class="benefit-grid">
+
+    <div class="benefit">
+
+      <mat-icon fontSet="material-symbols-outlined">
+        check_circle
+      </mat-icon>
+
+      <div>
+
+        <h3>Automatic recalculation</h3>
+
+        <p>
+          One ingredient price update instantly refreshes every recipe and menu item.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="benefit">
+
+      <mat-icon fontSet="material-symbols-outlined">
+        monitoring
+      </mat-icon>
+
+      <div>
+
+        <h3>Food cost analysis</h3>
+
+        <p>
+          Monitor food cost, markup and margin before publishing menu prices.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="benefit">
+
+      <mat-icon fontSet="material-symbols-outlined">
+        history
+      </mat-icon>
+
+      <div>
+
+        <h3>Price history</h3>
+
+        <p>
+          Track ingredient price changes over time and keep a complete history.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="benefit">
+
+      <mat-icon fontSet="material-symbols-outlined">
+        dashboard
+      </mat-icon>
+
+      <div>
+
+        <h3>Restaurant dashboard</h3>
+
+        <p>
+          View your restaurant's key metrics from a single dashboard.
+        </p>
+
+      </div>
+
+    </div>
 
   </div>
 

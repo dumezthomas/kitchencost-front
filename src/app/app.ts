@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, inject, signal} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {AuthStore} from './features/auth/stores/auth.store';
 
 @Component({
   imports: [RouterOutlet],
@@ -8,5 +9,13 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('kitchencost-front');
+
+  private readonly authStore = inject(AuthStore);
+
+  protected readonly title = signal('KitchenCost');
+
+  constructor() {
+
+    this.authStore.initialize();
+  }
 }

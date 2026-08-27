@@ -21,6 +21,7 @@ import {DietTypePipe} from '../../../../shared/pipes/diet-type.pipe';
 import {Badge} from '../../../../shared/components/badge/badge';
 import {MenuItemPricePipe} from '../../../../shared/pipes/menu-item-price.pipe';
 import {MenuItemTypePipe} from '../../../../shared/pipes/menu-item-type.pipe';
+import {TitleCasePipe} from '@angular/common';
 
 @Component({
   selector: 'app-restaurants',
@@ -47,7 +48,9 @@ import {MenuItemTypePipe} from '../../../../shared/pipes/menu-item-type.pipe';
     MenuItemTypePipe,
     MenuItemTypePipe,
     MenuItemPricePipe,
-    MenuItemTypePipe
+    MenuItemTypePipe,
+    TitleCasePipe,
+    TitleCasePipe
   ],
   templateUrl: './restaurants.html',
   styleUrl: './restaurants.scss'

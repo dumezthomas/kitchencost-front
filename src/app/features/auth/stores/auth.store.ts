@@ -80,6 +80,8 @@ export const AuthStore = signalStore(
       const user = store.tokenStorage.getUser();
 
       if (!token || !user) {
+
+        store.tokenStorage.clear();
         return;
       }
 

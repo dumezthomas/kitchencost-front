@@ -1,59 +1,94 @@
 <div class="login-page">
 
+  <button
+    mat-button
+    class="back-button"
+    routerLink="/">
+
+    <mat-icon fontSet="material-symbols-outlined">
+      arrow_back
+    </mat-icon>
+
+    Back to Home
+
+  </button>
+
   <mat-card class="login-card">
 
-    <button
-      mat-icon-button
-      class="back-button"
-      routerLink="/">
-
-      <mat-icon fontSet="material-symbols-outlined">arrow_back</mat-icon>
-
-    </button>
-
-    <img src="logo.png" alt="KitchenCost" class="logo"/>
+    <img
+      src="logo.png"
+      alt="KitchenCost"
+      class="logo">
 
     <h1>KitchenCost</h1>
 
-    <p class="subtitle">Food Cost Management</p>
+    <p class="subtitle">
+      Restaurant Cost Management
+    </p>
 
-    <form [formGroup]="form" (ngSubmit)="login()">
+    <p class="tagline">
+      Sign in to manage your restaurant and food costs.
+    </p>
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="login()">
 
       <mat-form-field appearance="outline">
+
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username"/>
+
+        <input
+          matInput
+          formControlName="username">
 
         @if (form.controls.username.hasError('required') && form.controls.username.touched) {
-          <mat-error>Username is required.</mat-error>
+
+          <mat-error>
+            Username is required.
+          </mat-error>
+
         }
 
       </mat-form-field>
 
       <mat-form-field appearance="outline">
+
         <mat-label>Password</mat-label>
 
         <input
           matInput
           [type]="hidePassword ? 'password' : 'text'"
-          formControlName="password"/>
+          formControlName="password">
 
-        <button mat-icon-button
-                matSuffix
-                type="button"
-                (click)="hidePassword = !hidePassword">
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword = !hidePassword">
 
-          <mat-icon fontSet="material-symbols-outlined">{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-icon fontSet="material-symbols-outlined">
+            {{ hidePassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
 
         </button>
 
         @if (form.controls.password.hasError('required') && form.controls.password.touched) {
-          <mat-error>Password is required.</mat-error>
+
+          <mat-error>
+            Password is required.
+          </mat-error>
+
         }
 
       </mat-form-field>
 
       @if (authStore.error()) {
-        <p class="error">{{ authStore.error() }}</p>
+
+        <p class="error">
+          {{ authStore.error() }}
+        </p>
+
       }
 
       <button
@@ -63,9 +98,15 @@
         [disabled]="authStore.loading()">
 
         @if (authStore.loading()) {
-          <mat-spinner diameter="20" strokeWidth="3"/>
+
+          <mat-spinner
+            diameter="20"
+            strokeWidth="3"/>
+
         } @else {
+
           Sign In
+
         }
 
       </button>

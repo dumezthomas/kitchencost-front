@@ -7,7 +7,7 @@
 
     <mat-icon fontSet="material-symbols-outlined">arrow_back</mat-icon>
 
-    Home
+    Back to Home
 
   </button>
 
@@ -57,7 +57,7 @@
             <div class="option">
 
               <span class="name">
-                {{ restaurant.name }}
+                {{ restaurant.name | titlecase }}
               </span>
 
               <span class="cuisine">
@@ -136,7 +136,7 @@
 
       <mat-card-content>
 
-        <h2>{{ restaurant.name }}</h2>
+        <h2>{{ restaurant.name | titlecase }}</h2>
 
         <p class="cuisine">
           {{ restaurant.cuisineType | cuisineType }}
@@ -187,7 +187,7 @@
                     tapas
                   }
                   @case (MenuItemType.STARTER) {
-                    restaurant_menu
+                    brunch_dining
                   }
                   @case (MenuItemType.MAIN) {
                     lunch_dining
@@ -210,7 +210,7 @@
 
                 <div class="menu-item-header">
 
-                  <h4>{{ item.name }}</h4>
+                  <h4>{{ item.name | titlecase }}</h4>
 
                   <span class="price">
                   {{ item.price | menuItemPrice }}

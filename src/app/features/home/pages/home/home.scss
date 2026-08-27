@@ -1,10 +1,10 @@
 @use '../../../../../styles/colors' as *;
-@use '../../../../../styles/spacing' as *;
-@use '../../../../../styles/typography' as *;
+@use '../../../../../styles/layout' as *;
 @use '../../../../../styles/radius' as *;
 @use '../../../../../styles/shadows' as *;
+@use '../../../../../styles/spacing' as *;
+@use '../../../../../styles/typography' as *;
 @use '../../../../../styles/breakpoints' as *;
-@use '../../../../../styles/layout' as *;
 
 :host {
   display: block;
@@ -14,31 +14,46 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: $space-6 0 0;
+
+  max-width: 820px;
+  margin-inline: auto;
   padding: $space-6;
+
   text-align: center;
 }
 
 .logo {
-  width: 210px;
-  height: 210px;
-  margin-bottom: $space-6;
+  width: 112px;
+  height: 112px;
+  margin-bottom: $space-5;
 }
 
-h1 {
+.hero h1 {
   margin: 0;
+
+  color: $primary;
+
   font-size: $text-3xl;
   font-weight: $font-bold;
   line-height: 1.1;
 }
 
+.subtitle {
+  margin-top: $space-2;
+
+  color: $text-secondary;
+
+  font-size: $text-md;
+}
+
 .tagline {
-  max-width: 700px;
-  margin: $space-6 0 $space-6;
+  margin: $space-5 0 $space-7;
+
   color: $accent;
+
   font-size: $text-xl;
   font-weight: $font-semibold;
+  line-height: 1.5;
 }
 
 .actions {
@@ -47,54 +62,72 @@ h1 {
 }
 
 .actions button {
-  height: 44px;
-  padding-inline: $space-6;
+  min-width: 180px;
+  height: 46px;
+}
+
+.features,
+.benefits {
+  max-width: $content-width;
+  margin-inline: auto;
 }
 
 .features {
-  max-width: $content-width;
-  margin-inline: auto;
-  padding: $space-5 $space-6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: $space-8 $space-6 $space-8;
 }
 
-.features h2 {
-  margin: 0 0 $space-6;
+.benefits {
+  padding: $space-8 $space-6;
+}
+
+.section-header {
+  max-width: 760px;
+  margin: 0 auto $space-8;
+
   text-align: center;
-  font-size: $text-2xl;
+}
+
+.section-header h2 {
+  margin: 0 0 $space-4;
+
+  color: $primary;
+
+  font-size: $text-3xl;
   font-weight: $font-bold;
 }
 
-.features p {
-  max-width: 680px;
-  margin: 0 0 $space-6;
+.section-header p {
+  margin: 0;
+
   color: $text-secondary;
-  text-align: center;
+
+  font-size: $text-lg;
   line-height: 1.8;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: $space-5;
-  align-items: stretch;
+  gap: $space-6;
 }
 
 mat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  min-height: 240px;
-  padding: $space-6;
+
+  padding: $space-8;
+
   border: 1px solid $border;
   border-radius: $radius-xl;
+
   background: $surface;
   box-shadow: $shadow-sm;
+
   text-align: center;
-  transition: transform .2s ease, box-shadow .2s ease;
+
+  transition: transform .2s ease,
+  box-shadow .2s ease;
 }
 
 mat-card:hover {
@@ -103,22 +136,86 @@ mat-card:hover {
 }
 
 mat-card mat-icon {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
+
   margin-bottom: $space-5;
-  font-size: 56px;
+
   color: $accent;
+
+  font-size: 48px;
 }
 
 mat-card h3 {
-  margin: 0 0 $space-4;
+  margin: 0 0 $space-2;
+
+  color: $primary;
+
   font-size: $text-xl;
   font-weight: $font-semibold;
 }
 
 mat-card p {
   margin: 0;
+
   color: $text-secondary;
+
+  line-height: 1.7;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-6;
+}
+
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-4;
+
+  padding: $space-6;
+
+  border: 1px solid $border;
+  border-radius: $radius-xl;
+
+  background: $surface;
+  box-shadow: $shadow-sm;
+
+  transition: transform .2s ease,
+  box-shadow .2s ease;
+}
+
+.benefit:hover {
+  transform: translateY(-3px);
+  box-shadow: $shadow-md;
+}
+
+.benefit mat-icon {
+  flex-shrink: 0;
+
+  width: 30px;
+  height: 30px;
+
+  color: $accent;
+
+  font-size: 30px;
+}
+
+.benefit h3 {
+  margin: 0 0 $space-2;
+
+  color: $primary;
+
+  font-size: $text-lg;
+  font-weight: $font-semibold;
+}
+
+.benefit p {
+  margin: 0;
+
+  color: $text-secondary;
+
   line-height: 1.7;
 }
 
@@ -128,22 +225,45 @@ mat-card p {
     padding: $space-6 $space-5;
   }
 
-  h1 {
-    font-size: $text-2xl;
+  .logo {
+    width: 96px;
+    height: 96px;
   }
 
-  .cards {
+  .tagline {
+    font-size: $text-lg;
+  }
+
+  .cards,
+  .benefit-grid {
     grid-template-columns: 1fr;
   }
 
   .actions {
     flex-direction: column;
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
   }
 
   .actions button {
     width: 100%;
   }
 
+}
+
+@media (max-width: $mobile) {
+
+  .hero {
+    padding: $space-6 $space-4;
+  }
+
+  .logo {
+    width: 84px;
+    height: 84px;
+  }
+
+  .features,
+  .benefits {
+    padding-inline: $space-4;
+  }
 }

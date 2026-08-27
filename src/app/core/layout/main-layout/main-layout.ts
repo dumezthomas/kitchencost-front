@@ -12,6 +12,7 @@ import {AuthStore} from '../../../features/auth/stores/auth.store';
 import {RolePipe} from '../../../shared/pipes/role.pipe';
 import {Badge} from '../../../shared/components/badge/badge';
 import {filter} from 'rxjs';
+import {TitleCasePipe} from '@angular/common';
 
 @Component({
   selector: 'app-main-layout',
@@ -27,7 +28,8 @@ import {filter} from 'rxjs';
     RouterLinkActive,
     RouterOutlet,
     RolePipe,
-    Badge
+    Badge,
+    TitleCasePipe
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss'
