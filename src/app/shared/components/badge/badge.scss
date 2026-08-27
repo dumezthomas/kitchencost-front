@@ -2,9 +2,16 @@
 @use '../../../../styles/spacing' as *;
 @use '../../../../styles/typography' as *;
 
+:host {
+  display: inline-flex;
+  align-self: center;
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+
   gap: 4px;
 
   padding: 5px 10px;
@@ -12,21 +19,20 @@
   border: 1px solid;
   border-radius: 999px;
 
-  user-select: none;
   white-space: nowrap;
+  user-select: none;
 
   font-size: $text-sm;
   font-weight: $font-medium;
+  line-height: 1.2;
 }
 
 .badge mat-icon {
-  flex-shrink: 0;
-
+  display: block;
   width: $text-sm;
   height: $text-sm;
-
   font-size: $text-sm;
-  line-height: $text-sm;
+  line-height: 1;
 }
 
 .badge.primary {

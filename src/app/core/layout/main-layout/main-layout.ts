@@ -1,15 +1,17 @@
-import {Component, computed, inject} from '@angular/core';
+import {Component, computed, HostListener, inject, signal} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 
 import {AuthStore} from '../../../features/auth/stores/auth.store';
 import {RolePipe} from '../../../shared/pipes/role.pipe';
+import {Badge} from '../../../shared/components/badge/badge';
+import {filter} from 'rxjs';
 
 @Component({
   selector: 'app-main-layout',
@@ -24,7 +26,8 @@ import {RolePipe} from '../../../shared/pipes/role.pipe';
     RouterLink,
     RouterLinkActive,
     RouterOutlet,
-    RolePipe
+    RolePipe,
+    Badge
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss'
@@ -34,19 +37,100 @@ export class MainLayout {
   private readonly authStore = inject(AuthStore);
   private readonly router = inject(Router);
 
+  protected readonly isMobile = signal(window.innerWidth < 900);
+
   protected readonly user = this.authStore.user;
 
   protected readonly pageTitle = computed(() => {
 
     const url = this.router.url;
 
-    if (url.startsWith('/ingredients')) return 'Ingredients';
-    if (url.startsWith('/recipes')) return 'Recipes';
-    if (url.startsWith('/menu-items')) return 'Menu Items';
-    if (url.startsWith('/settings')) return 'Settings';
+    if (url.startsWith('/dashboard')) {
 
-    return 'Dashboard';
+      return 'Dashboard';
+    }
+
+    if (url.startsWith('/ingredients')) {
+
+      return 'Ingredients';
+    }
+
+    if (url.startsWith('/recipes')) {
+
+      return 'Recipes';
+    }
+
+    if (url.startsWith('/menu-items')) {
+
+      return 'Menu Items';
+    }
+
+    if (url.startsWith('/settings')) {
+
+      return 'Settings';
+    }
+
+    return 'KitchenCost';
   });
+
+  protected readonly pageSubTitle = computed(() => {
+
+    const url = this.router.url;
+
+    if (url.startsWith('/dashboard')) {
+
+      return 'Overview of your restaurant performance.';
+    }
+
+    if (url.startsWith('/ingredients')) {
+
+      return 'Manage your ingredients and purchase prices.';
+    }
+
+    if (url.startsWith('/recipes')) {
+
+      return 'Create recipes and calculate their production cost.';
+    }
+
+    if (url.startsWith('/menu-items')) {
+
+      return 'Manage your menu and optimize profitability.';
+    }
+
+    if (url.startsWith('/settings')) {
+
+      return 'Configure your restaurant and application settings.';
+    }
+
+    return 'Manage your restaurant with confidence.';
+  });
+
+  constructor() {
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+
+        if (this.isMobile()) {
+
+          window.scrollTo({top: 0, behavior: 'instant'});
+        }
+      });
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+
+    this.isMobile.set(window.innerWidth < 900);
+  }
+
+  closeMenuOnMobile(sidenav: MatSidenav): void {
+
+    if (this.isMobile()) {
+
+      sidenav.close();
+    }
+  }
 
   protected logout(): void {
 

@@ -1,46 +1,109 @@
 <mat-sidenav-container>
 
-  <mat-sidenav mode="side" opened>
+  <mat-sidenav
+    #sidenav
+    [mode]="isMobile() ? 'over' : 'side'"
+    [opened]="!isMobile()">
 
     <div class="logo">
+
       <img src="logo.png" alt="KitchenCost">
-      <span>KitchenCost</span>
+
+      <h1>KitchenCost</h1>
+
+      <span>Restaurant Cost Management</span>
+
     </div>
 
-    <mat-nav-list>
+    <nav class="navigation">
 
-      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
-        <mat-icon fontSet="material-symbols-outlined">dashboard</mat-icon>
+      <a
+        class="nav-item"
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeMenuOnMobile(sidenav)">
+
+        <mat-icon fontSet="material-symbols-outlined">
+          dashboard
+        </mat-icon>
+
         <span>Dashboard</span>
+
       </a>
 
-      <a mat-list-item routerLink="/ingredients" routerLinkActive="active">
-        <mat-icon fontSet="material-symbols-outlined">inventory_2</mat-icon>
+      <a
+        class="nav-item"
+        routerLink="/ingredients"
+        routerLinkActive="active"
+        (click)="closeMenuOnMobile(sidenav)">
+
+        <mat-icon fontSet="material-symbols-outlined">
+          inventory_2
+        </mat-icon>
+
         <span>Ingredients</span>
+
       </a>
 
-      <a mat-list-item routerLink="/recipes" routerLinkActive="active">
-        <mat-icon fontSet="material-symbols-outlined">menu_book</mat-icon>
+      <a
+        class="nav-item"
+        routerLink="/recipes"
+        routerLinkActive="active"
+        (click)="closeMenuOnMobile(sidenav)">
+
+        <mat-icon fontSet="material-symbols-outlined">
+          menu_book
+        </mat-icon>
+
         <span>Recipes</span>
+
       </a>
 
-      <a mat-list-item routerLink="/menu-items" routerLinkActive="active">
-        <mat-icon fontSet="material-symbols-outlined">restaurant_menu</mat-icon>
+      <a
+        class="nav-item"
+        routerLink="/menu-items"
+        routerLinkActive="active"
+        (click)="closeMenuOnMobile(sidenav)">
+
+        <mat-icon fontSet="material-symbols-outlined">
+          restaurant_menu
+        </mat-icon>
+
         <span>Menu Items</span>
+
       </a>
 
-      <a mat-list-item routerLink="/settings" routerLinkActive="active">
-        <mat-icon fontSet="material-symbols-outlined">settings</mat-icon>
+      <a
+        class="nav-item"
+        routerLink="/settings"
+        routerLinkActive="active"
+        (click)="closeMenuOnMobile(sidenav)">
+
+        <mat-icon fontSet="material-symbols-outlined">
+          settings
+        </mat-icon>
+
         <span>Settings</span>
+
       </a>
 
-    </mat-nav-list>
+    </nav>
 
     <div class="logout">
-      <button mat-button (click)="logout()">
-        <mat-icon fontSet="material-symbols-outlined">logout</mat-icon>
-        Logout
-      </button>
+
+      <a
+        class="nav-item"
+        (click)="logout()">
+
+        <mat-icon fontSet="material-symbols-outlined">
+          logout
+        </mat-icon>
+
+        <span>Logout</span>
+
+      </a>
+
     </div>
 
   </mat-sidenav>
@@ -49,30 +112,65 @@
 
     <mat-toolbar>
 
-      <span class="toolbar-title">{{ pageTitle() }}</span>
+      @if (isMobile()) {
+
+        <button
+          mat-icon-button
+          type="button"
+          (click)="sidenav.toggle()">
+
+          <mat-icon fontSet="material-symbols-outlined">
+            menu
+          </mat-icon>
+
+        </button>
+
+      }
+
+      <div>
+
+        <div class="toolbar-title">
+          {{ pageTitle() }}
+        </div>
+
+        <div class="toolbar-subtitle">
+          {{ pageSubTitle() }}
+        </div>
+
+      </div>
 
       <span class="spacer"></span>
 
       <div class="user-info">
 
-        <span class="restaurant">
-          {{ user()?.restaurantName }}
-        </span>
+        <div class="user-text">
 
-        <span class="user">
-          {{ user()?.username }}
-        </span>
+          <span class="user">
+            {{ user()?.username }}
+          </span>
 
-        <mat-chip>
+          <span class="restaurant">
+            {{ user()?.restaurantName }}
+          </span>
+
+        </div>
+
+        <app-badge
+          variant="accent"
+          icon="shield_person">
+
           {{ user()?.role | role }}
-        </mat-chip>
+
+        </app-badge>
 
       </div>
 
     </mat-toolbar>
 
     <main class="content">
+
       <router-outlet/>
+
     </main>
 
   </mat-sidenav-content>

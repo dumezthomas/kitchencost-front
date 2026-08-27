@@ -1,7 +1,6 @@
 @use '../../../../styles/colors' as *;
 @use '../../../../styles/layout' as *;
 @use '../../../../styles/radius' as *;
-@use '../../../../styles/shadows' as *;
 @use '../../../../styles/spacing' as *;
 @use '../../../../styles/typography' as *;
 
@@ -16,74 +15,120 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-  display: flex;
-  flex-direction: column;
   width: $sidebar-width;
   border-right: 1px solid $border;
   background: $surface;
 }
 
+.mat-drawer,
+.mat-drawer-side {
+  border-radius: 0 !important;
+}
+
 .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-8 $space-6;
+  border-bottom: 1px solid $border;
+  text-align: center;
+}
+
+.logo img {
+  width: 84px;
+  height: 84px;
+}
+
+.logo h1 {
+  margin: 0;
+  color: $primary;
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+  line-height: 1;
+}
+
+.logo span {
+  color: $text-secondary;
+  font-size: $text-sm;
+  line-height: 1.3;
+}
+
+.navigation {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: $space-4 $space-3;
+}
+
+.nav-item {
   display: flex;
   align-items: center;
   gap: $space-4;
-  padding: $space-6;
-  border-bottom: 1px solid $border;
+
+  margin-bottom: 4px;
+  padding: $space-3 $space-4;
+
+  border-radius: $radius-lg;
+
   color: $primary;
-  font-size: $text-xl;
-  font-weight: $font-bold;
+  text-decoration: none;
+  cursor: pointer;
 
-  img {
-    width: 40px;
-    height: 40px;
-  }
+  transition: .2s ease;
 }
 
-mat-nav-list {
-  flex: 1;
-  padding: $space-3;
+.nav-item mat-icon {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  flex-shrink: 0;
 }
 
-a[mat-list-item] {
-  margin-bottom: $space-2;
-  border-radius: $radius-md;
-  transition: background-color .2s ease, color .2s ease;
+.nav-item span {
+  font-size: $text-md;
+  font-weight: $font-medium;
 }
 
-a[mat-list-item]:hover {
-  background: rgba($accent, .08);
+.nav-item:hover {
+  background: rgba($accent, .06);
 }
 
-.active {
+.nav-item.active {
   color: $accent;
   background: rgba($accent, .12);
+  box-shadow: inset 3px 0 0 $accent;
 }
 
 .logout {
-  padding: $space-3;
+  padding: $space-4 $space-3;
   border-top: 1px solid $border;
-}
-
-.logout button {
-  width: 100%;
-  justify-content: flex-start;
 }
 
 mat-toolbar {
   display: flex;
   align-items: center;
-  gap: $space-4;
-  height: $header-height;
-  padding-inline: $space-6;
+  gap: $space-3;
+
+  height: 72px;
+  padding-inline: $space-8;
+
   border-bottom: 1px solid $border;
   background: $surface;
-  box-shadow: $shadow-sm;
 }
 
 .toolbar-title {
   color: $primary;
   font-size: $text-xl;
   font-weight: $font-bold;
+  line-height: 1.3;
+}
+
+.toolbar-subtitle {
+  color: $text-secondary;
+  font-size: $text-sm;
+  line-height: 1.3;
 }
 
 .spacer {
@@ -93,25 +138,90 @@ mat-toolbar {
 .user-info {
   display: flex;
   align-items: center;
-  gap: $space-4;
+  gap: $space-3;
 }
 
-.restaurant {
-  color: $primary;
-  font-weight: $font-semibold;
+.user-info > * {
+  flex-shrink: 0;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .user {
-  color: $text-secondary;
+  color: $primary;
+  font-size: $text-xl;
+  font-weight: $font-bold;
+  line-height: 1.3;
 }
 
-mat-chip {
-  background: rgba($accent, .12) !important;
-  color: $accent !important;
+.restaurant {
+  color: $text-secondary;
   font-size: $text-sm;
-  font-weight: $font-medium;
+  line-height: 1.3;
 }
 
 .content {
-  padding: $space-6;
+  padding: $space-8;
+}
+
+button[mat-icon-button] {
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+
+  mat-sidenav {
+    width: 290px;
+  }
+
+  mat-toolbar {
+    padding-inline: $space-5;
+  }
+
+  .toolbar-title {
+    font-size: $text-lg;
+  }
+
+  .toolbar-subtitle {
+    display: none;
+  }
+
+  .user-text {
+    display: none;
+  }
+
+  .content {
+    padding: $space-5;
+  }
+
+  .logo {
+    padding: $space-7 $space-5;
+  }
+
+  .logo img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .logo h1 {
+    font-size: $text-xl;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  mat-toolbar {
+    height: 64px;
+    padding-inline: $space-4;
+  }
+
+  .content {
+    padding: $space-4;
+  }
+
 }

@@ -1,5 +1,6 @@
 @use '../../../../../styles/colors' as *;
 @use '../../../../../styles/layout' as *;
+@use '../../../../../styles/radius' as *;
 @use '../../../../../styles/spacing' as *;
 @use '../../../../../styles/typography' as *;
 
@@ -42,7 +43,7 @@ mat-form-field {
 .option {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: $space-1;
 }
 
 .name {
@@ -64,11 +65,11 @@ mat-form-field {
 }
 
 .empty-state mat-icon {
-  width: 64px;
-  height: 64px;
+  width: 4rem;
+  height: 4rem;
   margin-bottom: $space-4;
   color: $text-secondary;
-  font-size: 64px;
+  font-size: 4rem;
 }
 
 .empty-state h2 {
@@ -86,11 +87,12 @@ mat-form-field {
   margin: $space-8 0;
   padding-left: $space-2;
   border-left: 4px solid $primary;
+  border-radius: $radius-lg;
   background: $surface;
 }
 
 .restaurant-card mat-card-content {
-  padding: 24px;
+  padding: $space-5;
 }
 
 .restaurant-card h2 {
@@ -115,6 +117,10 @@ mat-form-field {
   margin-top: $space-7;
 }
 
+.menu-section:first-of-type {
+  margin-top: $space-8;
+}
+
 .menu-section h3 {
   display: flex;
   align-items: center;
@@ -135,7 +141,7 @@ mat-form-field {
 }
 
 .menu-item {
-  padding: $space-6 0 $space-6;
+  padding: $space-6 0;
   border-bottom: 1px solid $border;
 }
 
