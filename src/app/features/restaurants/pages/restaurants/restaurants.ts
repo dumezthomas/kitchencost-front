@@ -83,7 +83,6 @@ export class Restaurants {
 
       this.form.reset();
       this.restaurantStore.clearSelection();
-
     });
   }
 

@@ -1,49 +1,402 @@
-<h1>Dashboard</h1>
+<section class="page-header">
 
-<p class="subtitle">Welcome back to KitchenCost.</p>
+  <h1>
 
-<section class="stats">
+    <mat-icon fontSet="material-symbols-outlined">
+      waving_hand
+    </mat-icon>
 
-  <mat-card>
+    Hi, {{ authStore.user()?.role | titlecase }}!
 
-    <mat-card-content>
-      <mat-icon fontSet="material-symbols-outlined">inventory</mat-icon>
-      <h2>0</h2>
-      <p>Ingredients</p>
-    </mat-card-content>
+  </h1>
 
-  </mat-card>
-
-  <mat-card>
-
-    <mat-card-content>
-      <mat-icon fontSet="material-symbols-outlined">menu_book</mat-icon>
-      <h2>0</h2>
-      <p>Recipes</p>
-    </mat-card-content>
-
-  </mat-card>
-
-  <mat-card>
-
-    <mat-card-content>
-      <mat-icon fontSet="material-symbols-outlined">restaurant</mat-icon>
-      <h2>0</h2>
-      <p>Menus</p>
-    </mat-card-content>
-
-  </mat-card>
+  <p class="subtitle">
+    Welcome back to KitchenCost.
+  </p>
 
 </section>
 
-<mat-card>
+@if (dashboardStore.restaurantAnalysis(); as analysis) {
 
-  <mat-card-header>
-    <mat-card-title>Restaurant</mat-card-title>
-  </mat-card-header>
+  <section class="stats-grid">
 
-  <mat-card-content>
-    <p>Welcome to KitchenCost. Your restaurant statistics will appear here.</p>
-  </mat-card-content>
+    <mat-card
+      class="stat-card"
+      routerLink="/ingredients">
 
-</mat-card>
+      <mat-icon fontSet="material-symbols-outlined">
+        grocery
+      </mat-icon>
+
+      <div class="stat-value">
+        {{ analysis.ingredients }}
+      </div>
+
+      <div class="stat-label">
+        Ingredients
+      </div>
+
+    </mat-card>
+
+    <mat-card
+      class="stat-card"
+      routerLink="/recipes">
+
+      <mat-icon fontSet="material-symbols-outlined">
+        menu_book
+      </mat-icon>
+
+      <div class="stat-value">
+        {{ analysis.recipes }}
+      </div>
+
+      <div class="stat-label">
+        Recipes
+      </div>
+
+    </mat-card>
+
+    <mat-card
+      class="stat-card"
+      routerLink="/menu-items">
+
+      <mat-icon fontSet="material-symbols-outlined">
+        restaurant_menu
+      </mat-icon>
+
+      <div class="stat-value">
+        {{ analysis.menuItems }}
+      </div>
+
+      <div class="stat-label">
+        Menu Items
+      </div>
+
+    </mat-card>
+
+  </section>
+
+  <section class="dashboard-grid">
+
+    <mat-card class="dashboard-card">
+
+      <h2>Restaurant Health</h2>
+
+      <p class="card-subtitle">
+        Menu items classified by food cost status
+      </p>
+
+      <div class="chart-container">
+
+        <!-- Apex Donut -->
+
+      </div>
+
+      <div class="health-summary">
+
+        <div class="health-item good">
+
+          <strong>{{ analysis.goodItems }}</strong>
+
+          <span>Good</span>
+
+        </div>
+
+        <div class="health-item warning">
+
+          <strong>{{ analysis.warningItems }}</strong>
+
+          <span>Warning</span>
+
+        </div>
+
+        <div class="health-item critical">
+
+          <strong>{{ analysis.criticalItems }}</strong>
+
+          <span>Critical</span>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+
+      <h2>Performance</h2>
+
+      <p class="card-subtitle">
+        Average restaurant metrics
+      </p>
+
+      <div class="metric-list">
+
+        <div class="metric">
+
+          <span>Food Cost</span>
+
+          <div class="metric-value">
+
+            <app-badge
+              [variant]="dashboardStore.foodCostBadgeVariant()">
+
+              {{ analysis.averageFoodCostStatus | titlecase }}
+
+            </app-badge>
+
+            <strong>
+              {{ analysis.averageFoodCostPercentage | number:'1.1-1' }}%
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="metric">
+
+          <span>Margin</span>
+
+          <strong class="value">
+            {{ analysis.averageMargin | number:'1.2-2' }} €
+          </strong>
+
+        </div>
+
+        <div class="metric">
+
+          <span>Markup</span>
+
+          <strong class="value">
+            {{ analysis.averageMarkup | number:'1.1-1' }}x
+          </strong>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  </section>
+
+  <section class="dashboard-grid">
+
+    <mat-card class="dashboard-card">
+
+      <h2>Best Food Cost</h2>
+
+      <p class="card-subtitle">
+        Most profitable menu items
+      </p>
+
+      <div class="menu-items">
+
+        @for (item of dashboardStore.bestFoodCostMenuItems(); track item.id; let index = $index) {
+
+          <a
+            class="menu-item"
+            [routerLink]="['/menu-items', item.id]">
+
+            <div class="menu-item-content">
+
+              <div class="menu-item-header">
+
+                <div class="menu-item-rank">
+
+                  @switch (index) {
+
+                    @case (0) {
+
+                      <mat-icon
+                        class="gold"
+                        fontSet="material-symbols-outlined">
+
+                        workspace_premium
+
+                      </mat-icon>
+
+                    }
+
+                    @case (1) {
+
+                      <mat-icon
+                        class="silver"
+                        fontSet="material-symbols-outlined">
+
+                        workspace_premium
+
+                      </mat-icon>
+
+                    }
+
+                    @case (2) {
+
+                      <mat-icon
+                        class="bronze"
+                        fontSet="material-symbols-outlined">
+
+                        workspace_premium
+
+                      </mat-icon>
+
+                    }
+
+                  }
+
+                </div>
+
+                <div class="menu-item-name">
+
+                  {{ item.name }}
+
+                </div>
+
+              </div>
+
+              <div class="menu-item-metrics">
+
+                <span class="metric-label">Food Cost</span>
+
+                <span class="menu-metric-value">
+                  {{ item.foodCostPercentage | number:'1.1-1' }}%
+                </span>
+
+                <span class="separator">•</span>
+
+                <span class="metric-label">Cost</span>
+
+                <span class="menu-metric-value">
+                  {{ item.totalCost | number:'1.2-2' }} €
+                </span>
+
+                <span class="separator">•</span>
+
+                <span class="metric-label">Price</span>
+
+                <span class="menu-metric-value">
+                  {{ item.price | number:'1.2-2' }} €
+                </span>
+
+              </div>
+
+            </div>
+
+          </a>
+
+        }
+
+      </div>
+
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+
+      <h2>Needs Attention</h2>
+
+      <p class="card-subtitle">
+        Highest food cost menu items
+      </p>
+
+      <div class="menu-items">
+
+        @for (item of dashboardStore.worstFoodCostMenuItems(); track item.id; let index = $index) {
+
+          <a
+            class="menu-item"
+            [routerLink]="['/menu-items', item.id]">
+
+            <div class="menu-item-content">
+
+              <div class="menu-item-header">
+
+                <div class="menu-item-rank">
+
+                  @switch (index) {
+
+                    @case (0) {
+
+                      <mat-icon
+                        class="attention-first"
+                        fontSet="material-symbols-outlined">
+
+                        flag
+
+                      </mat-icon>
+
+                    }
+
+                    @case (1) {
+
+                      <mat-icon
+                        class="attention-second"
+                        fontSet="material-symbols-outlined">
+
+                        flag
+
+                      </mat-icon>
+
+                    }
+
+                    @case (2) {
+
+                      <mat-icon
+                        class="attention-third"
+                        fontSet="material-symbols-outlined">
+
+                        flag
+
+                      </mat-icon>
+
+                    }
+
+                  }
+
+                </div>
+
+                <div class="menu-item-name">
+
+                  {{ item.name }}
+
+                </div>
+
+              </div>
+
+              <div class="menu-item-metrics">
+
+                <span class="metric-label">Food Cost</span>
+
+                <span class="menu-metric-value">
+                  {{ item.foodCostPercentage | number:'1.1-1' }}%
+                </span>
+
+                <span class="separator">•</span>
+
+                <span class="metric-label">Cost</span>
+
+                <span class="menu-metric-value">
+                  {{ item.totalCost | number:'1.2-2' }} €
+                </span>
+
+                <span class="separator">•</span>
+
+                <span class="metric-label">Price</span>
+
+                <span class="menu-metric-value">
+                  {{ item.price | number:'1.2-2' }} €
+                </span>
+
+              </div>
+
+            </div>
+
+          </a>
+
+        }
+
+      </div>
+
+    </mat-card>
+
+  </section>
+
+}
