@@ -146,7 +146,8 @@
 
   flex: 1;
 
-  min-height: 190px;
+  min-height: 200px;
+  padding-bottom: $space-6;
 }
 
 .health-summary {
@@ -340,7 +341,7 @@
 .menu-metric-value {
   color: $primary;
 
-  font-size: $text-lg;
+  font-size: $text-md;
   font-weight: $font-semibold;
 }
 

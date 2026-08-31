@@ -88,8 +88,10 @@
 
       <div class="chart-container">
 
-        <!-- Apex Donut -->
-
+        <app-restaurant-health-chart
+          [analysis]="analysis">
+        </app-restaurant-health-chart>
+        
       </div>
 
       <div class="health-summary">
@@ -216,7 +218,6 @@
                       </mat-icon>
 
                     }
-
                     @case (1) {
 
                       <mat-icon
@@ -228,7 +229,6 @@
                       </mat-icon>
 
                     }
-
                     @case (2) {
 
                       <mat-icon
@@ -324,7 +324,6 @@
                       </mat-icon>
 
                     }
-
                     @case (1) {
 
                       <mat-icon
@@ -336,7 +335,6 @@
                       </mat-icon>
 
                     }
-
                     @case (2) {
 
                       <mat-icon
