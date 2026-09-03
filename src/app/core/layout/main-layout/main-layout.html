@@ -127,15 +127,9 @@
 
       }
 
-      <div>
+      <div class="restaurant-name">
 
-        <div class="toolbar-title">
-          {{ pageTitle() }}
-        </div>
-
-        <div class="toolbar-subtitle">
-          {{ pageSubTitle() }}
-        </div>
+        {{ user()?.restaurantName | titlecase }}
 
       </div>
 
@@ -143,17 +137,11 @@
 
       <div class="user-info">
 
-        <div class="user-text">
+        <span class="user">
 
-          <span class="user">
-            {{ user()?.username | titlecase }}
-          </span>
+          {{ user()?.username | titlecase }}
 
-          <span class="restaurant">
-            {{ user()?.restaurantName | titlecase }}
-          </span>
-
-        </div>
+        </span>
 
         <app-badge
           variant="accent"

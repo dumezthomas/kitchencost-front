@@ -6,6 +6,7 @@ import {LoginRequest} from '../models/login-request';
 import {Role} from '../../../shared/enums/role.enum';
 import {TokenStorageService} from '../../../core/services/token-storage.service';
 import {NotificationService} from '../../../shared/services/notification.service';
+import {TitleCasePipe} from '@angular/common';
 
 type AuthState = {
 
@@ -59,7 +60,10 @@ export const AuthStore = signalStore(
             loading: false
           });
 
-          store.notificationService.success('Welcome back!');
+          const titleCasePipe = new TitleCasePipe();
+          store.notificationService.success(
+            `Welcome back, ${titleCasePipe.transform(response.user.username)}!`
+          );
         },
 
         error: () => {

@@ -6,7 +6,6 @@ import {RouterLink} from '@angular/router';
 import {DecimalPipe, TitleCasePipe} from '@angular/common';
 import {DashboardStore} from '../../stores/dashboard.store';
 import {Badge} from '../../../../shared/components/badge/badge';
-import {AuthStore} from '../../../auth/stores/auth.store';
 import {RestaurantHealthChart} from '../../components/restaurant-health-chart/restaurant-health-chart';
 
 @Component({
@@ -26,7 +25,6 @@ import {RestaurantHealthChart} from '../../components/restaurant-health-chart/re
 export class Dashboard {
 
   protected readonly dashboardStore = inject(DashboardStore);
-  protected readonly authStore = inject(AuthStore);
 
   private readonly destroyRef = inject(DestroyRef);
 

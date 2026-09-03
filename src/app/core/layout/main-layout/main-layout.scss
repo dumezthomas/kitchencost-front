@@ -107,28 +107,25 @@ mat-sidenav {
 }
 
 mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
   display: flex;
   align-items: center;
-  gap: $space-3;
+  gap: $space-4;
 
-  height: 72px;
+  height: 64px;
   padding-inline: $space-8;
 
   border-bottom: 1px solid $border;
   background: $surface;
 }
 
-.toolbar-title {
+.restaurant-name {
   color: $primary;
-  font-size: $text-xl;
-  font-weight: $font-bold;
-  line-height: 1.4;
-}
-
-.toolbar-subtitle {
-  color: $text-secondary;
-  font-size: $text-sm;
-  line-height: 1.4;
+  font-size: $text-md;
+  font-weight: $font-semibold;
 }
 
 .spacer {
@@ -141,27 +138,10 @@ mat-toolbar {
   gap: $space-3;
 }
 
-.user-info > * {
-  flex-shrink: 0;
-}
-
-.user-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
 .user {
   color: $primary;
-  font-size: $text-xl;
-  font-weight: $font-bold;
-  line-height: 1.4;
-}
-
-.restaurant {
-  color: $text-secondary;
-  font-size: $text-sm;
-  line-height: 1.4;
+  font-size: $text-md;
+  font-weight: $font-semibold;
 }
 
 .content {
@@ -182,15 +162,11 @@ button[mat-icon-button] {
     padding-inline: $space-5;
   }
 
-  .toolbar-title {
-    font-size: $text-lg;
+  .restaurant-name {
+    font-size: $text-md;
   }
 
-  .toolbar-subtitle {
-    display: none;
-  }
-
-  .user-text {
+  .user {
     display: none;
   }
 
@@ -216,8 +192,12 @@ button[mat-icon-button] {
 @media (max-width: 600px) {
 
   mat-toolbar {
-    height: 64px;
+    height: 60px;
     padding-inline: $space-4;
+  }
+
+  .restaurant-name {
+    font-size: $text-sm;
   }
 
   .content {

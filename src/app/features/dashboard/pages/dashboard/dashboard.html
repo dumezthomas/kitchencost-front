@@ -3,15 +3,15 @@
   <h1>
 
     <mat-icon fontSet="material-symbols-outlined">
-      waving_hand
+      dashboard
     </mat-icon>
 
-    Hi, {{ authStore.user()?.role | titlecase }}!
+    Dashboard
 
   </h1>
 
   <p class="subtitle">
-    Welcome back to KitchenCost.
+    Overview of your restaurant performance.
   </p>
 
 </section>
@@ -91,7 +91,7 @@
         <app-restaurant-health-chart
           [analysis]="analysis">
         </app-restaurant-health-chart>
-        
+
       </div>
 
       <div class="health-summary">

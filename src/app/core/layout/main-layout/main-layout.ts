@@ -1,4 +1,4 @@
-import {Component, computed, HostListener, inject, signal} from '@angular/core';
+import {Component, HostListener, inject, signal} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatDividerModule} from '@angular/material/divider';
@@ -42,70 +42,6 @@ export class MainLayout {
   protected readonly isMobile = signal(window.innerWidth < 900);
 
   protected readonly user = this.authStore.user;
-
-  protected readonly pageTitle = computed(() => {
-
-    const url = this.router.url;
-
-    if (url.startsWith('/dashboard')) {
-
-      return 'Dashboard';
-    }
-
-    if (url.startsWith('/ingredients')) {
-
-      return 'Ingredients';
-    }
-
-    if (url.startsWith('/recipes')) {
-
-      return 'Recipes';
-    }
-
-    if (url.startsWith('/menu-items')) {
-
-      return 'Menu Items';
-    }
-
-    if (url.startsWith('/settings')) {
-
-      return 'Settings';
-    }
-
-    return 'KitchenCost';
-  });
-
-  protected readonly pageSubTitle = computed(() => {
-
-    const url = this.router.url;
-
-    if (url.startsWith('/dashboard')) {
-
-      return 'Overview of your restaurant performance.';
-    }
-
-    if (url.startsWith('/ingredients')) {
-
-      return 'Manage your ingredients and purchase prices.';
-    }
-
-    if (url.startsWith('/recipes')) {
-
-      return 'Create recipes and calculate their production cost.';
-    }
-
-    if (url.startsWith('/menu-items')) {
-
-      return 'Manage your menu and optimize profitability.';
-    }
-
-    if (url.startsWith('/settings')) {
-
-      return 'Configure your restaurant and application settings.';
-    }
-
-    return 'Manage your restaurant with confidence.';
-  });
 
   constructor() {
 
