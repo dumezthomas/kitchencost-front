@@ -1,7 +1,7 @@
-import {Component, DestroyRef, inject} from '@angular/core';
+import {Component, DestroyRef, effect, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 
-import {RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButton, MatIconButton} from '@angular/material/button';
@@ -22,6 +22,8 @@ import {Badge} from '../../../../shared/components/badge/badge';
 import {MenuItemPricePipe} from '../../../../shared/pipes/menu-item-price.pipe';
 import {MenuItemTypePipe} from '../../../../shared/pipes/menu-item-type.pipe';
 import {TitleCasePipe} from '@angular/common';
+import {AuthStore} from '../../../auth/stores/auth.store';
+import {NotificationService} from '../../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-restaurants',
@@ -57,10 +59,15 @@ import {TitleCasePipe} from '@angular/common';
 })
 export class Restaurants {
 
-  readonly restaurantStore = inject(PublicRestaurantStore);
+  protected readonly restaurantStore = inject(PublicRestaurantStore);
+  protected readonly authStore = inject(AuthStore);
+  private readonly notificationService = inject(NotificationService)
 
   private readonly fb = inject(FormBuilder);
   private readonly destroyRef = inject(DestroyRef);
+
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
   readonly form = this.fb.group({
     search: this.fb.control<PublicRestaurantIndex | string | null>(null)
@@ -69,6 +76,46 @@ export class Restaurants {
   constructor() {
 
     this.restaurantStore.loadRestaurants();
+
+    effect(() => {
+
+      const restaurants = this.restaurantStore.restaurants();
+
+      if (!restaurants.length || this.restaurantStore.selectedRestaurant()) {
+        return;
+      }
+
+      const id = this.route.snapshot.queryParamMap.get('id');
+
+      if (!id) {
+        return;
+      }
+
+      const restaurant = restaurants.find(r => r.id === id);
+
+      if (!restaurant) {
+
+        this.notificationService.error('Restaurant not found.');
+
+        this.router.navigate([], {
+          queryParams: {},
+          replaceUrl: true
+        });
+
+        return;
+      }
+
+      this.form.controls.search.setValue(restaurant, {
+        emitEvent: false
+      });
+
+      this.restaurantStore.selectRestaurant(id);
+
+      this.router.navigate([], {
+        queryParams: {},
+        replaceUrl: true
+      });
+    });
 
     this.form.controls.search.valueChanges.subscribe(value => {
 

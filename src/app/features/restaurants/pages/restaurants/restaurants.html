@@ -3,11 +3,11 @@
   <button
     mat-button
     class="back-button"
-    routerLink="/">
+    [routerLink]="authStore.isAuthenticated() ? '/dashboard' : '/'">
 
     <mat-icon fontSet="material-symbols-outlined">arrow_back</mat-icon>
 
-    Back to Home
+    {{ authStore.isAuthenticated() ? 'Back to Dashboard' : 'Back to Home' }}
 
   </button>
 

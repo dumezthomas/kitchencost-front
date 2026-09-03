@@ -1,1 +1,253 @@
-<p>restaurant works!</p>
+<section class="page-header">
+
+  <h1>
+
+    <mat-icon fontSet="material-symbols-outlined">
+      settings
+    </mat-icon>
+
+    Restaurant Settings
+
+  </h1>
+
+  <p class="subtitle">
+    Configure your restaurant and food cost targets.
+  </p>
+
+</section>
+
+<form
+  [formGroup]="form"
+  (ngSubmit)="save()">
+
+  <section class="restaurant-grid">
+
+    <mat-card class="restaurant-card">
+
+      <h2>Restaurant Information</h2>
+
+      <p class="card-subtitle">
+        Basic information displayed throughout the application.
+      </p>
+
+      <div class="form-grid">
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Restaurant Name</mat-label>
+
+          <input
+            matInput
+            formControlName="name">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+          <mat-label>Cuisine</mat-label>
+
+          <mat-select formControlName="cuisineType">
+
+            @for (type of cuisineTypes; track type) {
+
+              <mat-option [value]="type">
+                {{ type | cuisineType }}
+              </mat-option>
+
+            }
+
+          </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline"
+          class="full-width">
+
+          <mat-label>Description</mat-label>
+
+          <textarea
+            matInput
+            rows="5"
+            formControlName="description">
+          </textarea>
+
+        </mat-form-field>
+
+      </div>
+
+      <div class="qr-section">
+
+        <h3>Public Menu</h3>
+
+        <p class="qr-description">
+          Share your menu with customers.
+        </p>
+
+        <qrcode
+          [qrdata]="publicMenuUrl"
+          [width]="170"
+          [errorCorrectionLevel]="'M'">
+        </qrcode>
+
+        <div class="qr-actions">
+
+          <button
+            mat-stroked-button
+            type="button"
+            (click)="copyQrCodeLink()">
+
+            <mat-icon fontSet="material-symbols-outlined">
+              content_copy
+            </mat-icon>
+
+            Copy Link
+
+          </button>
+
+          <button
+            mat-flat-button
+            type="button"
+            (click)="downloadQrCode()">
+
+            <mat-icon fontSet="material-symbols-outlined">
+              download
+            </mat-icon>
+
+            Download QR
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+    <mat-card class="restaurant-card">
+
+      <h2>Food Cost Targets</h2>
+
+      <p class="card-subtitle">
+        Thresholds used to classify menu profitability.
+      </p>
+
+      <div class="metric-list">
+
+        <div class="metric">
+
+          <div class="metric-header">
+
+            <span class="metric-title">Target</span>
+
+            <strong>{{ form.controls.targetFoodCostPercentage.value }}%</strong>
+
+          </div>
+
+          <p class="metric-description">
+            Ideal food cost percentage for your menu.
+          </p>
+
+          <mat-slider
+            min="0"
+            max="100"
+            step="1">
+
+            <input
+              matSliderThumb
+              formControlName="targetFoodCostPercentage">
+
+          </mat-slider>
+
+        </div>
+
+        <div class="metric">
+
+          <div class="metric-header">
+
+            <span class="metric-title">Critical</span>
+
+            <strong>{{ form.controls.criticalFoodCostPercentage.value }}%</strong>
+
+          </div>
+
+          <p class="metric-description">
+            Items above this value require immediate attention.
+          </p>
+
+          <mat-slider
+            min="0"
+            max="100"
+            step="1">
+
+            <input
+              matSliderThumb
+              formControlName="criticalFoodCostPercentage">
+
+          </mat-slider>
+
+        </div>
+
+      </div>
+
+      <div class="threshold-preview">
+
+        <div
+          class="preview-bar"
+          [style.--target]="form.controls.targetFoodCostPercentage.value"
+          [style.--critical]="form.controls.criticalFoodCostPercentage.value">
+        </div>
+
+        <div
+          class="marker"
+          [style.left.%]="form.controls.targetFoodCostPercentage.value">
+
+          {{ form.controls.targetFoodCostPercentage.value }}%
+
+        </div>
+
+        <div
+          class="marker critical"
+          [style.left.%]="form.controls.criticalFoodCostPercentage.value">
+
+          {{ form.controls.criticalFoodCostPercentage.value }}%
+
+        </div>
+
+      </div>
+
+      @if (form.hasError('thresholds')) {
+
+        <p class="error">
+          Target must be lower than Critical.
+        </p>
+
+      }
+
+    </mat-card>
+
+  </section>
+
+  <div class="actions">
+
+    <button
+      mat-stroked-button
+      type="button"
+      (click)="reset()">
+
+      Reset
+
+    </button>
+
+    <button
+      mat-flat-button
+      type="submit"
+      [disabled]="form.invalid || restaurantStore.saving()">
+
+      Save Changes
+
+    </button>
+
+  </div>
+
+</form>

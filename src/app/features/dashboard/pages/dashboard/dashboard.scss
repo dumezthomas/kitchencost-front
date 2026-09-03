@@ -133,7 +133,7 @@
 }
 
 .card-subtitle {
-  margin: $space-1 0 $space-6;
+  margin: $space-2 0 $space-6;
 
   color: $text-secondary;
   font-size: $text-sm;
@@ -208,14 +208,19 @@
   border-bottom: 1px solid $border;
 }
 
+.metric:first-child {
+  padding-top: $space-2;
+}
+
 .metric:last-child {
   padding-bottom: 0;
   border-bottom: none;
 }
 
 .metric > span {
-  color: $text-secondary;
+  color: $primary;
   font-size: $text-md;
+  font-weight: $font-semibold;
 }
 
 .metric-value {
@@ -228,7 +233,7 @@
 .metric .value {
   color: $primary;
 
-  font-size: $text-2xl;
+  font-size: $text-xl;
   font-weight: $font-bold;
 }
 
@@ -348,4 +353,90 @@
 .separator {
   color: $text-secondary;
   opacity: .5;
+}
+
+@media (max-width: 1200px) {
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .page-header h1 {
+    font-size: $text-2xl;
+  }
+
+  .page-header h1 mat-icon {
+    width: $text-2xl;
+    height: $text-2xl;
+    font-size: $text-2xl;
+  }
+
+  .dashboard-card {
+    min-height: auto;
+    padding: $space-5;
+  }
+
+  .health-summary {
+    gap: $space-4;
+  }
+
+  .metric {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-3;
+  }
+
+  .metric-value {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .menu-item-header {
+    align-items: flex-start;
+  }
+
+  .menu-item-metrics {
+    margin-left: 0;
+    margin-top: $space-2;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .stats-grid {
+    gap: $space-4;
+  }
+
+  .dashboard-grid {
+    gap: $space-4;
+  }
+
+  .dashboard-card {
+    padding: $space-4;
+  }
+
+  .health-summary {
+    flex-direction: column;
+    gap: $space-5;
+  }
+
+  .menu-item-metrics {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-1;
+  }
+
+  .separator {
+    display: none;
+  }
+
 }

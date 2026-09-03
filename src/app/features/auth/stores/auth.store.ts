@@ -5,6 +5,7 @@ import {User} from '../models/user';
 import {LoginRequest} from '../models/login-request';
 import {Role} from '../../../shared/enums/role.enum';
 import {TokenStorageService} from '../../../core/services/token-storage.service';
+import {NotificationService} from '../../../shared/services/notification.service';
 
 type AuthState = {
 
@@ -32,7 +33,8 @@ export const AuthStore = signalStore(
   withProps(() => ({
 
     authService: inject(AuthService),
-    tokenStorage: inject(TokenStorageService)
+    tokenStorage: inject(TokenStorageService),
+    notificationService: inject(NotificationService)
   })),
 
   withMethods((store) => ({
@@ -56,6 +58,8 @@ export const AuthStore = signalStore(
             token: response.token,
             loading: false
           });
+
+          store.notificationService.success('Welcome back!');
         },
 
         error: () => {
@@ -64,6 +68,8 @@ export const AuthStore = signalStore(
             loading: false,
             error: 'Invalid username or password.'
           });
+
+          store.notificationService.error('Invalid email or password.');
         }
       });
     },
@@ -72,6 +78,8 @@ export const AuthStore = signalStore(
 
       store.tokenStorage.clear();
       patchState(store, initialState);
+
+      store.notificationService.success('Signed out successfully.');
     },
 
     initialize(): void {

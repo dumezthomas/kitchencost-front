@@ -1,7 +1,6 @@
 import {Routes} from '@angular/router';
 
 import {authGuard} from './core/guards/auth.guard';
-import {guestGuard} from './core/guards/guest.guard';
 
 import {GuestLayout} from './core/layout/guest-layout/guest-layout';
 import {MainLayout} from './core/layout/main-layout/main-layout';
@@ -10,16 +9,18 @@ import {Login} from './features/auth/pages/login/login';
 import {Dashboard} from './features/dashboard/pages/dashboard/dashboard';
 import {Home} from './features/home/pages/home/home';
 import {Restaurants} from './features/restaurants/pages/restaurants/restaurants';
+import {Restaurant} from './features/restaurant/pages/restaurant/restaurant';
+import {guestGuard} from './core/guards/guest.guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: GuestLayout,
-    canActivate: [guestGuard],
     children: [
       {
         path: '',
-        component: Home
+        component: Home,
+        canActivate: [guestGuard],
       },
 
       {
@@ -29,7 +30,8 @@ export const routes: Routes = [
 
       {
         path: 'login',
-        component: Login
+        component: Login,
+        canActivate: [guestGuard],
       }
     ]
   },
@@ -42,9 +44,15 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: Dashboard
+      },
+
+      {
+        path: 'settings',
+        component: Restaurant
       }
     ]
   },
+  
   {
     path: '**',
     redirectTo: ''

@@ -1,0 +1,342 @@
+@use '../../../../../styles/colors' as *;
+@use '../../../../../styles/layout' as *;
+@use '../../../../../styles/radius' as *;
+@use '../../../../../styles/shadows' as *;
+@use '../../../../../styles/spacing' as *;
+@use '../../../../../styles/typography' as *;
+@use '../../../../../styles/breakpoints' as *;
+
+:host {
+  display: block;
+}
+
+.page-header {
+  margin-bottom: $space-8;
+}
+
+.page-header h1 {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+
+  margin: 0;
+
+  color: $primary;
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+}
+
+.page-header h1 mat-icon {
+  width: $text-3xl;
+  height: $text-3xl;
+
+  color: $accent;
+  font-size: $text-3xl;
+}
+
+.subtitle {
+  margin: $space-2 0 $space-6;
+
+  color: $text-secondary;
+}
+
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-6;
+
+  align-items: start;
+}
+
+.restaurant-card {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 420px;
+
+  padding: $space-6;
+
+  border: 1px solid $border;
+  border-radius: $radius-xl;
+
+  background: $surface;
+  box-shadow: $shadow-sm;
+}
+
+.restaurant-card h2 {
+  margin: 0;
+
+  color: $primary;
+  font-size: $text-2xl;
+  font-weight: $font-bold;
+}
+
+.card-subtitle {
+  margin: $space-2 0 $space-6;
+
+  color: $text-secondary;
+  font-size: $text-sm;
+}
+
+.form-grid {
+  display: grid;
+  padding: $space-2 0 $space-4;
+  gap: $space-5;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mat-form-field:first-child {
+  padding-top: $space-2;
+}
+
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: auto;
+  padding-top: $space-6;
+
+  border-top: 1px solid $border;
+}
+
+.qr-section h3 {
+  margin: 0;
+
+  color: $primary;
+  font-size: $text-lg;
+  font-weight: $font-semibold;
+}
+
+.qr-description {
+  margin: $space-2 0 $space-5;
+
+  color: $text-secondary;
+  font-size: $text-sm;
+  text-align: center;
+}
+
+.qr-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: $space-3;
+
+  width: 100%;
+  margin-top: $space-5;
+}
+
+.qr-actions button {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+}
+
+.metric-list {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+}
+
+.metric {
+  padding: $space-5 0;
+
+  border-bottom: 1px solid $border;
+}
+
+.metric:first-child {
+  padding-top: $space-1;
+}
+
+.metric:last-child {
+  border-bottom: none;
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: $space-2;
+}
+
+.metric-title {
+  color: $primary;
+  font-size: $text-md;
+  font-weight: $font-semibold;
+}
+
+.metric strong {
+  color: $primary;
+  font-size: $text-xl;
+  font-weight: $font-bold;
+}
+
+.metric-description {
+  margin: 0 0 $space-4;
+
+  color: $text-secondary;
+  font-size: $text-sm;
+}
+
+.metric mat-slider {
+  width: 100%;
+}
+
+.threshold-preview {
+  position: relative;
+
+  margin-top: auto;
+  padding-top: $space-8;
+}
+
+.preview-bar {
+  height: 8px;
+  border-radius: $radius-full;
+
+  background: linear-gradient(
+    to right,
+    $success 0%,
+    $success calc(var(--target) * 1%),
+    $warning calc(var(--target) * 1%),
+    $warning calc(var(--critical) * 1%),
+    $error calc(var(--critical) * 1%),
+    $error 100%
+  );
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+
+  transform: translateX(-50%);
+
+  color: $success;
+  font-size: $text-sm;
+  font-weight: $font-semibold;
+}
+
+.marker::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  top: 18px;
+
+  width: 2px;
+  height: 16px;
+
+  background: currentColor;
+
+  transform: translateX(-50%);
+}
+
+.marker.warning {
+  color: $warning;
+}
+
+.marker.critical {
+  color: $error;
+}
+
+.error {
+  margin-top: $space-5;
+
+  color: $error;
+  font-size: $text-sm;
+  line-height: 1.3;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-4;
+
+  margin-top: $space-6;
+}
+
+@media (max-width: 1200px) {
+
+  .restaurant-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .restaurant-card {
+    min-height: auto;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .page-header h1 {
+    font-size: $text-2xl;
+  }
+
+  .page-header h1 mat-icon {
+    width: $text-2xl;
+    height: $text-2xl;
+    font-size: $text-2xl;
+  }
+
+  .restaurant-card {
+    padding: $space-5;
+  }
+
+  .metric-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-2;
+  }
+
+  .threshold-preview {
+    margin-top: $space-6;
+    padding-top: $space-7;
+  }
+
+  .marker {
+    font-size: $text-sm;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    gap: $space-3;
+
+    button {
+      width: 100%;
+    }
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .restaurant-card {
+    padding: $space-4;
+  }
+
+  .restaurant-grid {
+    gap: $space-4;
+  }
+
+  .metric {
+    padding: $space-4 0;
+  }
+
+  .metric-description {
+    margin-bottom: $space-3;
+  }
+
+  .marker {
+    font-size: 10px;
+  }
+
+  .preview-bar {
+    height: 6px;
+  }
+
+}
